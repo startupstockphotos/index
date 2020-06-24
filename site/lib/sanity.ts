@@ -1,8 +1,14 @@
 const sanityClient = require('@sanity/client')
+import imageURL from '@sanity/image-url'
 
 export const client = sanityClient({
-  projectId: 'your-project-id',
-  dataset: 'bikeshop',
-  token: 'sanity-auth-token', // or leave blank to be anonymous user
-  useCdn: true // `false` if you want to ensure fresh data
+  projectId: 'oxekkfaj',
+  dataset: 'production',
+  useCdn: true,
 })
+
+const builder = imageURL(client);
+
+export function image(image) {
+  return builder.image(image);
+}
