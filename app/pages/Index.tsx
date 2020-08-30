@@ -1,18 +1,18 @@
-import React from "react";
-import { Box } from "@sure-thing/box";
-import { load } from "@presta/load";
+import React from 'react'
+import { Box } from '@sure-thing/box'
+import { load } from '@presta/load'
 
-import { client } from "@/app/lib/sanity";
-import { documentTitle } from "@/app/lib/documentTitle";
+import { client } from '@/app/lib/sanity'
+import { documentTitle } from '@/app/lib/documentTitle'
 
-import { Img } from "@/app/components/Img";
-import { Layout } from "@/app/components/Layout";
+import { Img } from '@/app/components/Img'
+import { Layout } from '@/app/components/Layout'
 
-export function getPaths() {
-  return ["/"];
+export function getPaths () {
+  return ['/']
 }
 
-export function Page(props: any) {
+export function Page (props: any) {
   const result = load(
     async () =>
       await client.fetch(`
@@ -24,33 +24,37 @@ export function Page(props: any) {
           dominant,
         },
         "username": user->username.current,
-      }
+    } | order(_createdAt desc)
   `),
-    { key: "index" }
-  );
+    { key: 'index' }
+  )
 
   props.head.title = documentTitle()
 
   return (
     <Layout>
-      <Box as="ul" f fw>
+      <Box as='ul' f fw>
         {result
           ? result.map((photo: any) => {
               return (
                 <Box
                   key={photo.slug.current}
-                  as="li"
+                  as='li'
                   db
                   w={[1, 1 / 2, 1 / 3, 1 / 4]}
                 >
-                  <Box as="a" db href={`/photos/${photo.slug.current}`}>
-                    <Img bg={photo.palette.dominant.background} asset={photo.image} width={450} />
+                  <Box as='a' db href={`/photos/${photo.slug.current}`}>
+                    <Img
+                      bg={photo.palette.dominant.background}
+                      asset={photo.image}
+                      width={450}
+                    />
                   </Box>
                 </Box>
-              );
+              )
             })
           : null}
       </Box>
     </Layout>
-  );
+  )
 }
