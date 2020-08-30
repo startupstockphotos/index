@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "build": "npm run client:build && npm run site:build",
+    "build": "npm run client:build && npm run site:build && npm run static:copy",
     "serve": "presta serve",
+    "static:copy": "cp -r static build",
     "client:watch": "webpack -w",
     "client:build": "webpack -p",
-    "site:watch": "presta watch",
+    "site:watch": "npm run static:copy && presta watch",
     "site:build": "presta build --inc",
     "lint:format": "prettier-standard --format"
   },
