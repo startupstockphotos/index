@@ -32,8 +32,18 @@ export function document ({ body, head }: { body: string; head: string }) {
       * {
         font-family: 'Roboto Mono', monospace;
       }
+      html, body {
+        color: #333;
+      }
+      ::selection {
+        background: blue;
+        color: white;
+      }
+      a {
+        color: blue;
+      }
       a:visited {
-        color: currentColor;
+        color: blue;
       }
     </style>
 

@@ -1,30 +1,44 @@
 import React from 'react'
 import { Box } from '@sure-thing/box'
-import { load, cache } from 'presta/load'
+import { load, cache, prime } from 'presta/load'
 
 import { client } from '@/app/lib/sanity'
 import { documentTitle } from '@/app/lib/documentTitle'
 
 import { Img } from '@/app/components/Img'
 import { Layout } from '@/app/components/Layout'
+import { Gutter } from '@/app/components/Gutter'
+
+const photoQuery = `
+  title,
+  image {
+    asset->{
+      _id,
+  		metadata {
+  			dimensions,
+  			palette {
+    			dominant
+  			},
+			}
+    }
+  },
+	user->{
+    username,
+    image
+  },
+  "slug": slug.current,
+`
 
 export async function getPaths () {
-  const slugs: { slug: string }[] = await cache(
-    await client.fetch(`
+  const photos: { slug: string }[] = await client.fetch(`
     *[_type == 'photo'] {
-      title,
-      image,
-      "palette": image.asset->metadata.palette {
-        dominant,
-      },
-      "username": user->username.current,
-      "slug": slug.current,
+      ${photoQuery}
     } | order(_createdAt desc)
-  `),
-    { key: 'photos', duration: '5m' }
-  )
+  `)
 
-  return slugs.map(s => `/photos/${s.slug}`)
+  photos.map(p => prime(p, { key: p.slug }))
+
+  return photos.map(p => `/photos/${p.slug}`)
 }
 
 export function Page (props: any) {
@@ -34,35 +48,51 @@ export function Page (props: any) {
     () =>
       client.fetch(
         `*[_type == 'photo' && slug.current == $slug]{
-          title,
-          image,
-          "palette": image.asset->metadata.palette {
-            dominant,
-          },
-          "username": user->username.current,
+          ${photoQuery}
         }[0]`,
         { slug }
       ),
-    { key: slug, duration: '5m' }
+    { key: slug }
   )
 
   props.head.title = documentTitle(photo ? photo.title : '')
 
+  if (!photo) return null
+
+  const { title, image, user } = photo
+  const { metadata } = image.asset
+  const username = user.username.current
+
   return (
     <Layout navSubpage={slug}>
-      {photo && (
-        <>
-          <Box h='calc(100vh - 75px)'>
-            <Img
-              bg={photo.palette.dominant.background}
-              asset={photo.image}
-              pt='auto'
-              width={2000}
-              h
-            />
+      <Gutter>
+        <Box py={4}>
+          <Box f aie mb={3}>
+            <Box as='h1' my='0' lh='1'>
+              #{title}
+            </Box>
+            <Box as='p' my='0' lh='1' pb='3px' ml={3}>
+              by{' '}
+              <strong>
+                <a href={`/${username}/photos`}>{username}</a>
+              </strong>
+            </Box>
           </Box>
-        </>
-      )}
+          <Box as='p' my='0' fs={6} c='gray'>
+            {metadata.dimensions.width} x {metadata.dimensions.height}
+          </Box>
+        </Box>
+      </Gutter>
+
+      <Box h='calc(100vh - 75px)'>
+        <Img
+          bg={metadata.palette.dominant.background}
+          asset={photo.image}
+          pt='auto'
+          width={2000}
+          h
+        />
+      </Box>
     </Layout>
   )
 }
