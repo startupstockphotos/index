@@ -1,15 +1,14 @@
-import React from "react";
-import { Nav } from "@/app/components/Nav";
+import React from 'react'
+import { Nav } from '@/app/components/Nav'
 
-export function Layout({
+export function Layout ({
   children,
-  navSubPath,
-}: React.PropsWithChildren<{ navSubPath?: string }>) {
+  navSubpage
+}: React.PropsWithChildren<{ navSubpage?: string }>) {
   return (
-    <>
-      <Nav />
-
-      <div id="root">{children}</div>
-    </>
-  );
+    <div id='root'>
+      <Nav subpage={navSubpage} />
+      {children}
+    </div>
+  )
 }

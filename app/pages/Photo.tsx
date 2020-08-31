@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box } from '@sure-thing/box'
-import { load } from '@presta/load'
+import { load, cache } from 'presta/load'
 
 import { client } from '@/app/lib/sanity'
 import { documentTitle } from '@/app/lib/documentTitle'
@@ -9,11 +9,20 @@ import { Img } from '@/app/components/Img'
 import { Layout } from '@/app/components/Layout'
 
 export async function getPaths () {
-  const slugs: { slug: string }[] = await client.fetch(`
+  const slugs: { slug: string }[] = await cache(
+    await client.fetch(`
     *[_type == 'photo'] {
+      title,
+      image,
+      "palette": image.asset->metadata.palette {
+        dominant,
+      },
+      "username": user->username.current,
       "slug": slug.current,
-    }
-  `)
+    } | order(_createdAt desc)
+  `),
+    { key: 'photos', duration: '5m' }
+  )
 
   return slugs.map(s => `/photos/${s.slug}`)
 }
@@ -34,13 +43,13 @@ export function Page (props: any) {
         }[0]`,
         { slug }
       ),
-    { key: slug }
+    { key: slug, duration: '5m' }
   )
 
   props.head.title = documentTitle(photo ? photo.title : '')
 
   return (
-    <Layout navSubPath={slug}>
+    <Layout navSubpage={slug}>
       {photo && (
         <>
           <Box h='calc(100vh - 75px)'>

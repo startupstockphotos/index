@@ -5,17 +5,22 @@ import { Gutter } from '@/app/components/Gutter'
 
 export function Nav ({ subpage }: { subpage?: string }) {
   return (
-    <Box as='header' py={3} bb='2px solid currentColor' h="75px">
+    <Box
+      as='header'
+      py={3}
+      h='75px'
+      css={{
+        borderBottom: '2px solid currentColor'
+      }}
+    >
       <Gutter>
         <Box f aic jcb>
           <Box as='h1' f aic fs={5} fe={4}>
-            <a href="/">
-              SSP
-            </a>
+            <a href='/'>SSP</a>
 
             {subpage && (
               <>
-                <Box mx={0}>/</Box>
+                <Box mx={2}>/</Box>
 
                 <Box>{subpage}</Box>
               </>
@@ -23,9 +28,7 @@ export function Nav ({ subpage }: { subpage?: string }) {
           </Box>
 
           <Box as='nav' f aic jce fs={5} fe={4}>
-            <a href="/about">
-              About
-            </a>
+            <a href='/about'>About</a>
           </Box>
         </Box>
       </Gutter>

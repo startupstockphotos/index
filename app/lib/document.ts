@@ -32,6 +32,9 @@ export function document ({ body, head }: { body: string; head: string }) {
       * {
         font-family: 'Roboto Mono', monospace;
       }
+      a:visited {
+        color: currentColor;
+      }
     </style>
 
     ${head}

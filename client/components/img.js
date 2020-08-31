@@ -1,4 +1,4 @@
-import { component } from "picoapp";
+import { component } from 'picoapp'
 import vsbl from 'vsbl'
 
 export const img = component((node, ctx) => {
@@ -6,17 +6,19 @@ export const img = component((node, ctx) => {
 
   let listener
 
-  if (image.complete) {
+  if (image.src && image.complete) {
+    console.log('loaded')
     image.style.opacity = 1
   } else {
     listener = vsbl(node)(() => {
       const i = document.createElement('img')
 
       i.onload = () => {
+        image.src = i.src
         image.style.opacity = 1
       }
 
-      i.src = image.src
+      i.src = image.dataset.src
     })
 
     listener.update()
@@ -25,4 +27,4 @@ export const img = component((node, ctx) => {
   return () => {
     listener && listener.destroy()
   }
-});
+})

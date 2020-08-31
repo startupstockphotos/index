@@ -1,13 +1,13 @@
-import React from "react";
-import { Box } from "@sure-thing/box";
+import React from 'react'
+import { Box } from '@sure-thing/box'
 
-import { image } from "@/app/lib/sanity";
+import { image } from '@/app/lib/sanity'
 
-export function Img({ asset, width = 1000, ...props }: any) {
+export function Img ({ asset, width = 1000, ...props }: any) {
   return (
-    <Box pt="66%" {...props} data-component="img">
+    <Box pt='66%' {...props} data-component='img'>
       <Box
-        as="img"
+        as='img'
         db
         abs
         top
@@ -17,15 +17,17 @@ export function Img({ asset, width = 1000, ...props }: any) {
         w
         h
         z={1}
-        src={image(asset).width(width).url()}
+        data-src={image(asset)
+          .width(width)
+          .url()}
         css={() => ({
           opacity: 0,
           objectFit: 'cover',
           transitionProperty: 'opacity',
           transitionDuration: '150ms',
-          transitionTimingFunction: 'ease-in-out',
+          transitionTimingFunction: 'ease-in-out'
         })}
       />
     </Box>
-  );
+  )
 }

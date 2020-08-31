@@ -5,7 +5,7 @@ import { img } from '@/client/components/img'
 
 const router = operator('#root')
 const app = picoapp({
-  img,
+  img
 })
 
 app.mount()
@@ -18,7 +18,6 @@ router.on('after', ({ previousDocument, location }) => {
   document.title = previousDocument.title
   window.history.pushState({}, '', location)
 
-  app.unmount();
-  app.mount();
+  app.unmount()
+  app.mount()
 })
-
