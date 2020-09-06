@@ -1,9 +1,9 @@
-import React from 'react'
-import { Box } from '@sure-thing/box'
+import { h } from 'hyposcript'
+import { Box } from 'hypobox'
 
 import { image } from '@/app/lib/sanity'
 
-export function Img ({ asset, width = 1000, ...props }: any) {
+export function Img ({ asset, width = 1000, ...props }) {
   return (
     <Box pt='66%' {...props} data-component='img'>
       <Box

@@ -1,6 +1,7 @@
-import React from 'react'
-import { Box } from '@sure-thing/box'
+import { h } from 'hyposcript'
+import { Box } from 'hypobox'
 import { load } from 'presta/load'
+import { head } from 'presta/head'
 
 import { client } from '@/app/lib/sanity'
 import { documentTitle } from '@/app/lib/documentTitle'
@@ -13,7 +14,7 @@ export function getPaths () {
   return ['/']
 }
 
-export function Page (props: any) {
+export function Page (props) {
   const result = load(
     () =>
       client.fetch(`
@@ -30,7 +31,7 @@ export function Page (props: any) {
     { key: 'index', duration: '5m' }
   )
 
-  props.head.title = documentTitle()
+  head({ title: documentTitle() })
 
   return (
     <Layout>
@@ -43,7 +44,7 @@ export function Page (props: any) {
 
       <Box as='ul' f fw>
         {result
-          ? result.map((photo: any) => {
+          ? result.map(photo => {
               return (
                 <Box
                   key={photo.slug.current}
@@ -55,7 +56,7 @@ export function Page (props: any) {
                     <Img
                       bg={photo.palette.dominant.background}
                       asset={photo.image}
-                      width={450}
+                      width={400}
                     />
                   </Box>
                 </Box>

@@ -1,6 +1,7 @@
-import React from 'react'
-import { Box } from '@sure-thing/box'
+import { h } from 'hyposcript'
+import { Box } from 'hypobox'
 import { load } from 'presta/load'
+import { head } from 'presta/head'
 
 import { client } from '@/app/lib/sanity'
 import { documentTitle } from '@/app/lib/documentTitle'
@@ -13,7 +14,7 @@ export function getPaths () {
   return ['/about']
 }
 
-export function Page (props: any) {
+export function Page (props) {
   const [_, slug] = props.pathname.match(/\/(.+)$/) || []
   const page = load(
     () =>
@@ -30,7 +31,7 @@ export function Page (props: any) {
     { key: 'about', duration: '5m' }
   )
 
-  props.head.title = documentTitle(page ? page.title : '')
+  head({ title: documentTitle(page ? page.title : '') })
 
   return (
     <Layout>

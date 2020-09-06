@@ -4,11 +4,11 @@ import imageURL from '@sanity/image-url'
 export const client = sanityClient({
   projectId: 'oxekkfaj',
   dataset: 'production',
-  useCdn: true,
+  useCdn: true
 })
 
-const builder = imageURL(client);
+const builder = imageURL(client)
 
-export function image(image) {
-  return builder.image(image);
+export function image (image) {
+  return builder.image(image)
 }

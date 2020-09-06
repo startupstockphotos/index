@@ -1,6 +1,7 @@
-import React from 'react'
-import { Box } from '@sure-thing/box'
+import { h } from 'hyposcript'
+import { Box } from 'hypobox'
 import { load, cache, prime } from 'presta/load'
+import { head } from 'presta/head'
 
 import { client } from '@/app/lib/sanity'
 import { documentTitle } from '@/app/lib/documentTitle'
@@ -30,21 +31,25 @@ const photoQuery = `
 `
 
 export async function getPaths () {
-  const photos: { slug: string }[] = await client.fetch(`
+  const photos = await cache(
+    async () =>
+      await client.fetch(`
     *[_type == 'photo'] {
       ${photoQuery}
     } | order(_createdAt desc)
-  `)
+    `),
+    { key: 'photos', duration: '5m' }
+  )
 
   photos.map(p => prime(p, { key: p.slug }))
 
   return photos.map(p => `/photos/${p.slug}`)
 }
 
-export function Page (props: any) {
+export function Page (props) {
   const [_, slug] = props.pathname.match(/photos\/(.+)/) || []
 
-  const photo: any = load(
+  const photo = load(
     () =>
       client.fetch(
         `*[_type == 'photo' && slug.current == $slug]{
@@ -55,7 +60,7 @@ export function Page (props: any) {
     { key: slug }
   )
 
-  props.head.title = documentTitle(photo ? photo.title : '')
+  head({ title: documentTitle(photo ? photo.title : '') })
 
   if (!photo) return null
 

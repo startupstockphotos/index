@@ -1,4 +1,4 @@
-export function document ({ body, head }: { body: string; head: string }) {
+export function document ({ body, head }) {
   return `<!DOCTYPE html>
 <html>
   <head>

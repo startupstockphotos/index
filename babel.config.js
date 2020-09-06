@@ -10,8 +10,13 @@ module.exports = {
         }
       }
     ],
-    '@babel/preset-react',
-    '@babel/preset-typescript'
+    [
+      '@babel/preset-react',
+      {
+        pragma: 'h',
+        pragmaFrag: 'h'
+      }
+    ]
   ],
   plugins: [
     '@babel/plugin-proposal-object-rest-spread',

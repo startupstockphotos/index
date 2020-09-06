@@ -1,9 +1,9 @@
-import React from 'react'
-import { Box } from '@sure-thing/box'
+import { h } from 'hyposcript'
+import { Box } from 'hypobox'
 
 import { Gutter } from '@/app/components/Gutter'
 
-export function Nav ({ subpage }: { subpage?: string }) {
+export function Nav ({ subpage }) {
   return (
     <Box
       as='header'

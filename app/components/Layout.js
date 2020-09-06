@@ -1,10 +1,7 @@
-import React from 'react'
+import { h } from 'hyposcript'
 import { Nav } from '@/app/components/Nav'
 
-export function Layout ({
-  children,
-  navSubpage
-}: React.PropsWithChildren<{ navSubpage?: string }>) {
+export function Layout ({ children, navSubpage }) {
   return (
     <div id='root'>
       <Nav subpage={navSubpage} />
