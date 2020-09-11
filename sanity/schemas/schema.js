@@ -10,6 +10,7 @@ import user from './user'
 import tag from './tag'
 import photo from './photo'
 import page from './page'
+import root from './root'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -20,5 +21,6 @@ export default createSchema({
     tag,
     photo,
     page,
+    root,
   ])
 })

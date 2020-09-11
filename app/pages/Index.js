@@ -5,6 +5,7 @@ import { head } from 'presta/head'
 
 import { client } from '@/app/lib/sanity'
 import { documentTitle } from '@/app/lib/documentTitle'
+import { image } from '@/app/lib/sanity'
 
 import { Img } from '@/app/components/Img'
 import { Layout } from '@/app/components/Layout'
@@ -15,7 +16,7 @@ export function getPaths () {
 }
 
 export function Page (props) {
-  const result = load(
+  const photos = load(
     () =>
       client.fetch(`
       *[_type == 'photo']{
@@ -28,10 +29,33 @@ export function Page (props) {
           "username": user->username.current,
       } | order(_createdAt desc)
     `),
-    { key: 'index', duration: '5m' }
+    { key: 'indexPhotos', duration: '5m' }
+  )
+  const page = load(
+    () =>
+      client.fetch(`
+      *[_type == 'root']{
+          metaTitle,
+          metaDescription,
+          metaImage,
+          metaKeywords,
+          title,
+          description,
+      }[0]
+    `),
+    { key: 'indexPage' }
   )
 
-  head({ title: documentTitle() })
+  if (!photos || !page) return
+
+  head({
+    title: page.metaTitle,
+    description: page.metaDescription,
+    image: image(page.metaImage)
+      .width(1200)
+      .url(),
+    meta: [{ name: 'keywords', content: page.metaKeywords }]
+  })
 
   return (
     <Layout>
@@ -43,26 +67,50 @@ export function Page (props) {
       </Gutter>
 
       <Box as='ul' f fw>
-        {result
-          ? result.map(photo => {
-              return (
+        {photos.map(photo => {
+          return (
+            <Box
+              key={photo.slug.current}
+              as='li'
+              db
+              w={[1, 1 / 2, 1 / 3, 1 / 4]}
+            >
+              <Box
+                as='a'
+                db
+                href={`/photos/${photo.slug.current}`}
+                css={{
+                  ':focus': {
+                    outline: '0'
+                  },
+                  ':focus .box': {
+                    opacity: 1
+                  },
+                  ':hover .box': {
+                    opacity: 1
+                  }
+                }}
+              >
+                <Img
+                  bg={photo.palette.dominant.background}
+                  asset={photo.image}
+                  width={400}
+                />
                 <Box
-                  key={photo.slug.current}
-                  as='li'
-                  db
-                  w={[1, 1 / 2, 1 / 3, 1 / 4]}
-                >
-                  <Box as='a' db href={`/photos/${photo.slug.current}`}>
-                    <Img
-                      bg={photo.palette.dominant.background}
-                      asset={photo.image}
-                      width={400}
-                    />
-                  </Box>
-                </Box>
-              )
-            })
-          : null}
+                  abs
+                  fill
+                  z={2}
+                  c='black'
+                  className='box'
+                  css={{
+                    opacity: 0,
+                    boxShadow: 'inset 0 0 0 4px'
+                  }}
+                />
+              </Box>
+            </Box>
+          )
+        })}
       </Box>
     </Layout>
   )

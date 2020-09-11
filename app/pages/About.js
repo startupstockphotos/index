@@ -28,7 +28,7 @@ export function Page (props) {
     `,
         { slug }
       ),
-    { key: 'about', duration: '5m' }
+    { key: 'about' }
   )
 
   head({ title: documentTitle(page ? page.title : '') })

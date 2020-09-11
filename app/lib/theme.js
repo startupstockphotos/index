@@ -2,7 +2,7 @@ import { theme as defaultTheme } from 'hypobox'
 
 export const theme = {
   ...defaultTheme,
-  colors: {
+  color: {
     black: '#333',
     gray: '#555'
   }

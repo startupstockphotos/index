@@ -11,9 +11,6 @@ export function render (Page, context) {
 }
 
 const name = `Startup Stock Photos`
-const title = `Startup Stock Photos | Free Tech Stock Photos`
-const description = `Take 'em, these things are free. Go. Make something.`
-const image = `/static/og.png`
 const url = `https://startupstockphotos.com`
 
 export function createDocument ({ body }) {
@@ -23,29 +20,18 @@ export function createDocument ({ body }) {
       script: [{ src: '/client.js' }]
     },
     head: {
-      description,
       og: {
-        title,
-        description,
         site_name: name,
-        image,
         url
       },
       twitter: {
-        title,
-        description,
         site_name: name,
-        image,
         card: 'summary_large_image',
         creator: '@estrattonbailey'
       },
       meta: [
-        { name: 'author', content: '@estrattonbailey' },
-        {
-          name: 'keywords',
-          content:
-            'stock photos, photos, stock, startup, startups, startup photos, startup stock photos, free, creative commons, CC0'
-        }
+        { name: 'author', content: 'https://twitter.com/estrattonbailey' },
+        { name: 'author', content: 'https://twitter.com/JHKrak' }
       ],
       link: [
         `<link rel="icon" type="image/png" href="/static/favicon.png">`,
@@ -73,6 +59,12 @@ export function createDocument ({ body }) {
           }
           a:visited {
             color: blue;
+          }
+          a:hover {
+            color: #333;
+          }
+          a:focus {
+            outline: 2px dashed blue;
           }
         </style>`
       ],

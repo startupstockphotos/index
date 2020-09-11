@@ -46,7 +46,7 @@
     "core-js": "^3.6.5",
     "husky": "^4.2.5",
     "netlify-cli": "^2.59.0",
-    "presta": "^0.2.0",
+    "presta": "^0.3.1",
     "prettier-standard": "^16.3.0",
     "typescript": "^3.9.6",
     "webpack": "^4.44.1",

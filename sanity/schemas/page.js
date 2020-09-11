@@ -4,8 +4,8 @@ export default {
   type: 'document',
   fields: [
     {
-      name: 'title',
-      title: 'Title',
+      name: 'metaTitle',
+      title: 'Meta Title',
       type: 'string'
     },
     {
@@ -13,22 +13,24 @@ export default {
       title: 'Slug',
       type: 'slug',
       options: {
-        source: 'title',
+        source: 'metaTitle',
         maxLength: 96
       }
     },
     {
-      name: 'description',
-      title: 'Desctiption',
+      name: 'metaDescription',
+      title: 'Meta Desctiption',
       type: 'text'
     },
     {
-      name: 'featuredImage',
-      title: 'Featured image',
+      name: 'metaImage',
+      title: 'Meta Image',
       type: 'image',
-      options: {
-        hotspot: true
-      }
+    },
+    {
+      name: 'title',
+      title: 'Title',
+      type: 'string',
     },
     {
       name: 'body',
@@ -39,7 +41,7 @@ export default {
   preview: {
     select: {
       title: 'title',
-      media: 'featuredImage'
+      media: 'metaImage'
     },
   }
 }

@@ -5,6 +5,7 @@ import { head } from 'presta/head'
 
 import { client } from '@/app/lib/sanity'
 import { documentTitle } from '@/app/lib/documentTitle'
+import { image } from '@/app/lib/sanity'
 
 import { Img } from '@/app/components/Img'
 import { Layout } from '@/app/components/Layout'
@@ -15,6 +16,7 @@ const photoQuery = `
   image {
     asset->{
       _id,
+      url,
   		metadata {
   			dimensions,
   			palette {
@@ -38,7 +40,7 @@ export async function getPaths () {
       ${photoQuery}
     } | order(_createdAt desc)
     `),
-    { key: 'photos', duration: '5m' }
+    { key: 'photos', duration: '1m' }
   )
 
   photos.map(p => prime(p, { key: p.slug }))
@@ -60,12 +62,18 @@ export function Page (props) {
     { key: slug }
   )
 
-  head({ title: documentTitle(photo ? photo.title : '') })
-
   if (!photo) return null
 
-  const { title, image, user } = photo
-  const { metadata } = image.asset
+  head({
+    title: documentTitle('#' + photo.title),
+    description: `SSP #${photo.slug}`,
+    image: image(photo.image)
+      .width(1200)
+      .url()
+  })
+
+  const { title, user } = photo
+  const { metadata } = photo.image.asset
   const username = user.username.current
 
   return (
@@ -76,15 +84,12 @@ export function Page (props) {
             <Box as='h1' my='0' lh='1'>
               #{title}
             </Box>
-            <Box as='p' my='0' lh='1' pb='3px' ml={3}>
-              by{' '}
-              <strong>
-                <a href={`/${username}/photos`}>{username}</a>
-              </strong>
-            </Box>
           </Box>
           <Box as='p' my='0' fs={6} c='gray'>
-            {metadata.dimensions.width} x {metadata.dimensions.height}
+            {metadata.dimensions.width} x {metadata.dimensions.height} •{' '}
+            <Box as='a' href={photo.image.asset.url + `?dl=ssp${slug}.jpg`}>
+              Download
+            </Box>
           </Box>
         </Box>
       </Gutter>
