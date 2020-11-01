@@ -9,6 +9,7 @@
     "client:build": "webpack -p",
     "static:copy": "mkdir -p build/static && cp -R static/* build/static",
     "build": "npm run site:build && NODE_ENV=production npm run client:build && npm run static:copy",
+    "netlify": "npm run build && netlify dev",
     "serve": "presta serve",
     "format": "prettier-standard --format",
     "lint": "prettier-standard --lint"
