@@ -15,7 +15,10 @@ export function createDocument (ctx) {
   return document(ctx, {
     body: `<div id="root">${ctx.body}</div>`,
     foot: {
-      script: [{ src: '/client.js' }]
+      script: [
+        { src: '/client.js' },
+        `<div id='div-gpt-ad-1580157483474-0' style='width: 1px; height: 1px;'><script>googletag.cmd.push(function(){googletag.display('div-gpt-ad-1580157483474-0'); });</script>`
+      ]
     },
     head: {
       og: {
@@ -64,7 +67,17 @@ export function createDocument (ctx) {
           gtag('js', new Date());
 
           gtag('config', 'G-KEYFNM7409');
-        </script>`
+        </script>`,
+        `<script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+        <script>
+          window.googletag = window.googletag || {cmd: []};
+          googletag.cmd.push(function() {
+            googletag.defineSlot('/7346874/Hellobar-adunits/7502', [1, 1], 'div-gpt-ad-1580157483474-0').addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+          });
+        </script>
+        `
       ]
     }
   })

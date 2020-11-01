@@ -20,4 +20,6 @@ router.on('after', ({ previousDocument, location }) => {
 
   app.unmount()
   app.mount()
+
+  if (window.gtag) window.gtag('event', 'page_view')
 })
