@@ -1,7 +1,6 @@
 import { h } from 'hyposcript'
 import { Box } from 'hypobox'
 import { load } from 'presta/load'
-import { head } from 'presta/head'
 
 import { client } from '@/app/lib/sanity'
 import { documentTitle } from '@/app/lib/documentTitle'
@@ -48,7 +47,7 @@ export function Page (props) {
 
   if (!photos || !page) return
 
-  head({
+  props.head({
     title: page.metaTitle,
     description: page.metaDescription,
     image: image(page.metaImage)

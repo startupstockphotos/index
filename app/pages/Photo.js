@@ -1,7 +1,6 @@
 import { h } from 'hyposcript'
 import { Box } from 'hypobox'
 import { load, cache, prime } from 'presta/load'
-import { head } from 'presta/head'
 
 import { client } from '@/app/lib/sanity'
 import { documentTitle } from '@/app/lib/documentTitle'
@@ -64,7 +63,7 @@ export function Page (props) {
 
   if (!photo) return null
 
-  head({
+  props.head({
     title: documentTitle('#' + photo.title),
     description: `SSP #${photo.slug}`,
     image: image(photo.image)

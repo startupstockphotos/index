@@ -2,3 +2,4 @@
 build
 .env
 .presta
+sanity/dist

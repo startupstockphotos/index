@@ -6,10 +6,6 @@ import { theme } from '@/app/lib/theme'
 
 configure({ theme })
 
-export function render (Page, context) {
-  return <Page {...context} />
-}
-
 const name = `Startup Stock Photos`
 const url = `https://startupstockphotos.com`
 

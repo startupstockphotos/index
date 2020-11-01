@@ -1,7 +1,6 @@
 import { h } from 'hyposcript'
 import { Box } from 'hypobox'
 import { load } from 'presta/load'
-import { head } from 'presta/head'
 
 import { client } from '@/app/lib/sanity'
 import { documentTitle } from '@/app/lib/documentTitle'
@@ -31,7 +30,7 @@ export function Page (props) {
     { key: 'about' }
   )
 
-  head({ title: documentTitle(page ? page.title : '') })
+  props.head({ title: documentTitle(page ? page.title : '') })
 
   return (
     <Layout>
