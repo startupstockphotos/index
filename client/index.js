@@ -21,5 +21,7 @@ router.on('after', ({ previousDocument, location }) => {
   app.unmount()
   app.mount()
 
+  window.scrollTo(0, 0)
+
   if (window.gtag) window.gtag('event', 'page_view')
 })

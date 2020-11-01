@@ -58,10 +58,12 @@ export function Page (props) {
     <Layout>
       <Gutter>
         <Box py={[8, 8, 12]}>
-          <Box as='h1' mb={4} fs={2}>
-            {page.title}
+          <Box mw={600}>
+            <Box as='h1' mb={4} fs={2}>
+              {page.title}
+            </Box>
+            <Box as='p'>{page.description}</Box>
           </Box>
-          <Box as='p'>{page.description}</Box>
         </Box>
       </Gutter>
 
