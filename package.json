@@ -4,7 +4,7 @@
   "scripts": {
     "start": "npm run build && concurrently -- 'npm run site:watch' 'npm run client:watch' 'npm run serve'",
     "site:watch": "npm run static:copy && presta watch",
-    "site:build": "presta build --inc",
+    "site:build": "presta build",
     "client:watch": "webpack -w",
     "client:build": "webpack -p",
     "static:copy": "mkdir -p build/static && cp -R static/* build/static",
