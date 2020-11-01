@@ -7,7 +7,7 @@
     "site:build": "presta build --inc",
     "client:watch": "webpack -w",
     "client:build": "webpack -p",
-    "static:copy": "cp -R static/* build/static",
+    "static:copy": "mkdir -p build/static && cp -R static/* build/static",
     "build": "npm run site:build && npm run client:build && npm run static:copy",
     "serve": "presta serve",
     "format": "prettier-standard --format",
