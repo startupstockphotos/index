@@ -1,12 +1,12 @@
 const path = require('path')
-const webpack = require('webpack')
 
 const cwd = process.cwd()
-const { NODE_ENV } = process.env
+const { NODE_ENV = 'development' } = process.env
 
 module.exports = {
+  mode: NODE_ENV,
   entry: {
-    client: './client/index.js',
+    client: './client/index.js'
   },
   output: {
     path: path.join(cwd, './build')
@@ -27,5 +27,5 @@ module.exports = {
       '@': cwd
     },
     extensions: ['.ts', '.tsx', '.js', '.json']
-  },
+  }
 }

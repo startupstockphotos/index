@@ -2,9 +2,8 @@ import { h } from 'hyposcript'
 import { Box } from 'hypobox'
 import { load, cache, prime } from 'presta/load'
 
-import { client } from '@/app/lib/sanity'
+import { client, image } from '@/app/lib/sanity'
 import { documentTitle } from '@/app/lib/documentTitle'
-import { image } from '@/app/lib/sanity'
 
 import { Img } from '@/app/components/Img'
 import { Layout } from '@/app/components/Layout'
@@ -49,7 +48,7 @@ export async function getPaths () {
 }
 
 export function Page (props) {
-  const [_, slug] = props.pathname.match(/photos\/(.+)/) || []
+  const [_, slug] = props.pathname.match(/photos\/(.+)/) || [] // eslint-disable-line
 
   const photo = load(
     () =>
@@ -72,9 +71,8 @@ export function Page (props) {
       .url()
   })
 
-  const { title, user } = photo
+  const { title } = photo
   const { metadata } = photo.image.asset
-  const username = user.username.current
 
   return (
     <Layout navSubpage={slug}>

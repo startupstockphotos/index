@@ -1,5 +1,5 @@
 import { h } from 'hyposcript'
-import { Box, configure, getCss } from 'hypobox'
+import { configure, getCss } from 'hypobox'
 import { document } from 'presta/document'
 
 import { theme } from '@/app/lib/theme'

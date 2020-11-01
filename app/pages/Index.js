@@ -2,9 +2,7 @@ import { h } from 'hyposcript'
 import { Box } from 'hypobox'
 import { load } from 'presta/load'
 
-import { client } from '@/app/lib/sanity'
-import { documentTitle } from '@/app/lib/documentTitle'
-import { image } from '@/app/lib/sanity'
+import { client, image } from '@/app/lib/sanity'
 
 import { Img } from '@/app/components/Img'
 import { Layout } from '@/app/components/Layout'
