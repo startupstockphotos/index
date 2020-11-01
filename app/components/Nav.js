@@ -7,27 +7,26 @@ export function Nav ({ subpage }) {
   return (
     <Box
       as='header'
-      py={3}
-      h='75px'
+      py={6}
       css={{
         borderBottom: '2px solid currentColor'
       }}
     >
       <Gutter>
         <Box f aic jcb>
-          <Box as='h1' f aic fs={5} fe={4}>
-            <a href='/'>SSP</a>
-
-            {subpage && (
+          <Box as='h1' f aic fs={5} fe={7}>
+            {subpage ? (
               <>
+                <a href='/'>SSP</a>
                 <Box mx={2}>/</Box>
-
                 <Box>{subpage}</Box>
               </>
+            ) : (
+              <span>SSP</span>
             )}
           </Box>
 
-          <Box as='nav' f aic jce fs={5} fe={4}>
+          <Box as='nav' f aic jce fs={5} fe={7}>
             <a href='/about'>About</a>
           </Box>
         </Box>

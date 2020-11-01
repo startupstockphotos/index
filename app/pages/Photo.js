@@ -12,6 +12,7 @@ import { Gutter } from '@/app/components/Gutter'
 
 const photoQuery = `
   title,
+	description,
   image {
     asset->{
       _id,
@@ -65,7 +66,7 @@ export function Page (props) {
 
   props.head({
     title: documentTitle('#' + photo.title),
-    description: `SSP #${photo.slug}`,
+    description: photo.description || `SSP #${photo.slug}`,
     image: image(photo.image)
       .width(1200)
       .url()
@@ -78,13 +79,13 @@ export function Page (props) {
   return (
     <Layout navSubpage={slug}>
       <Gutter>
-        <Box py={4}>
+        <Box py={[8, 8, 12]}>
           <Box f aie mb={3}>
             <Box as='h1' my='0' lh='1'>
               #{title}
             </Box>
           </Box>
-          <Box as='p' my='0' fs={6} c='gray'>
+          <Box as='p' my='0' fs={6} c='gray' ff='mono'>
             {metadata.dimensions.width} x {metadata.dimensions.height} •{' '}
             <Box as='a' href={photo.image.asset.url + `?dl=ssp${slug}.jpg`}>
               Download

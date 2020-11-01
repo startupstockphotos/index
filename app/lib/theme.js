@@ -5,5 +5,9 @@ export const theme = {
   color: {
     black: '#333',
     gray: '#555'
+  },
+  fontFamily: {
+    sans: '"Roboto", sans-serif',
+    mono: '"Roboto Mono", monospace'
   }
 }

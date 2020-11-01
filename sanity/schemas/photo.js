@@ -39,7 +39,7 @@ export default {
     },
     {
       name: 'description',
-      title: 'Body',
+      title: 'Description',
       type: 'text'
     }
   ],

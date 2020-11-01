@@ -59,9 +59,11 @@ export function Page (props) {
   return (
     <Layout>
       <Gutter>
-        <Box py={3}>
-          <Box as='h1'>Startup Stock Photos</Box>
-          <Box as='p'>The original tech photo site.</Box>
+        <Box py={[8, 8, 12]}>
+          <Box as='h1' mb={4}>
+            {page.title}
+          </Box>
+          <Box as='p'>{page.description}</Box>
         </Box>
       </Gutter>
 

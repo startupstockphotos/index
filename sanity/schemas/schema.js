@@ -16,9 +16,9 @@ import root from './root'
 export default createSchema({
   name: 'default',
   types: schemaTypes.concat([
-    post,
+    // post,
     user,
-    tag,
+    // tag,
     photo,
     page,
     root,

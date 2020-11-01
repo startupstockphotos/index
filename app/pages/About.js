@@ -33,7 +33,7 @@ export function Page (props) {
   props.head({ title: documentTitle(page ? page.title : '') })
 
   return (
-    <Layout>
+    <Layout navSubpage='About'>
       {page && (
         <Gutter>
           <Box
