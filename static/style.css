@@ -131,3 +131,7 @@ pre::selection {
   position: relative;
   z-index: 1;
 }
+
+#div-gpt-ad-1580157483474-0 {
+  overflow: hidden;
+}
