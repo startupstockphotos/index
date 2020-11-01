@@ -1,4 +1,4 @@
-const sanityClient = require('@sanity/client')
+import sanityClient from '@sanity/client'
 import imageURL from '@sanity/image-url'
 
 export const client = sanityClient({

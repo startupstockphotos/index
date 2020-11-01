@@ -8,7 +8,7 @@
     "client:watch": "webpack -w",
     "client:build": "webpack -p",
     "static:copy": "mkdir -p build/static && cp -R static/* build/static",
-    "build": "npm run site:build && npm run client:build && npm run static:copy",
+    "build": "npm run site:build && NODE_ENV=production npm run client:build && npm run static:copy",
     "serve": "presta serve",
     "format": "prettier-standard --format",
     "lint": "prettier-standard --lint"

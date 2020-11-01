@@ -3,9 +3,7 @@ import { Box } from 'hypobox'
 import { load } from 'presta/load'
 
 import { client, image } from '@/app/lib/sanity'
-import { documentTitle } from '@/app/lib/documentTitle'
 
-import { Img } from '@/app/components/Img'
 import { Layout } from '@/app/components/Layout'
 import { Gutter } from '@/app/components/Gutter'
 import { Markdown } from '@/app/components/Markdown'
