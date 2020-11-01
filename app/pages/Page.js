@@ -57,7 +57,7 @@ export function Page ({ pathname: slug, head }) {
             maxWidth: '640px'
           }}
         >
-          <Box as='h1' mb={6}>
+          <Box as='h1' mb={6} fs={2}>
             {page.title}
           </Box>
           <Markdown>{page.body}</Markdown>

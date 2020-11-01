@@ -85,7 +85,7 @@ export function Page (props) {
               #{title}
             </Box>
           </Box>
-          <Box as='p' my='0' fs={6} c='gray' ff='mono'>
+          <Box as='p' my='0' fs={6} c='gray' ff='mono' fe={7}>
             {metadata.dimensions.width} x {metadata.dimensions.height} •{' '}
             <Box as='a' href={photo.image.asset.url + `?dl=ssp${slug}.jpg`}>
               Download

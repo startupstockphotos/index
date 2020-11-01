@@ -60,7 +60,7 @@ export function Page (props) {
     <Layout>
       <Gutter>
         <Box py={[8, 8, 12]}>
-          <Box as='h1' mb={4}>
+          <Box as='h1' mb={4} fs={2}>
             {page.title}
           </Box>
           <Box as='p'>{page.description}</Box>
@@ -85,10 +85,10 @@ export function Page (props) {
                     outline: '0'
                   },
                   ':focus .box': {
-                    opacity: 1
+                    opacity: 0.4
                   },
                   ':hover .box': {
-                    opacity: 1
+                    opacity: 0.4
                   }
                 }}
               >
@@ -99,13 +99,15 @@ export function Page (props) {
                 />
                 <Box
                   abs
-                  fill
+                  cover
                   z={2}
-                  c='black'
+                  c='d'
                   className='box'
+                  bg='black'
                   css={{
                     opacity: 0,
-                    boxShadow: 'inset 0 0 0 4px'
+                    transition: `opacity 300ms cubic-bezier(.01,.79,.35,.99)`
+                    // boxShadow: 'inset 0 0 0 4px'
                   }}
                 />
               </Box>
