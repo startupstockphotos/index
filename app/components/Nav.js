@@ -27,7 +27,12 @@ export function Nav ({ subpage }) {
           </Box>
 
           <Box as='nav' f aic jce fs={5} fe={7}>
-            <a href='/about'>About</a>
+            <Box as='a' href='/about' mr={6}>
+              About
+            </Box>
+            <Box as='a' href='/faq'>
+              FAQ
+            </Box>
           </Box>
         </Box>
       </Gutter>
