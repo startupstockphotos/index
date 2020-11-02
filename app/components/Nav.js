@@ -36,8 +36,7 @@ export function Nav ({ subpage }) {
               px={4}
               py={1}
               bg='blue'
-              c='white'
-              css={{ borderRadius: '20px' }}
+              css={{ color: 'white !important', borderRadius: '20px' }}
             >
               Donate
             </Box>
