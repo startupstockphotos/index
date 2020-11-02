@@ -27,10 +27,24 @@ export function Nav ({ subpage }) {
           </Box>
 
           <Box as='nav' f aic jce fs={5} fe={7}>
-            <Box as='a' href='/about' mr={6}>
+            <Box
+              as='a'
+              href='https://paypal.me/startupphotos'
+              target='_blank'
+              db
+              mr={[4, 6]}
+              px={4}
+              py={1}
+              bg='blue'
+              c='white'
+              css={{ borderRadius: '20px' }}
+            >
+              Donate
+            </Box>
+            <Box as='a' href='/about' db mr={[4, 6]}>
               About
             </Box>
-            <Box as='a' href='/faq'>
+            <Box as='a' href='/faq' db>
               FAQ
             </Box>
           </Box>
