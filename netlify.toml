@@ -2,6 +2,11 @@
   publish = "./build"
 
 [[redirects]]
+  from = "/terms-of-use"
+  to = "/terms"
+  status = 301
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 410
