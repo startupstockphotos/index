@@ -58,7 +58,7 @@ export function Page (props) {
         }[0]`,
         { slug }
       ),
-    { key: slug }
+    { key: slug, duration: '1m' }
   )
 
   if (!photo) return null

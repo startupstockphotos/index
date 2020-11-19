@@ -40,7 +40,7 @@ export function Page (props) {
           description,
       }[0]
     `),
-    { key: 'indexPage' }
+    { key: 'indexPage', duration: '30s' }
   )
 
   if (!photos || !page) return
