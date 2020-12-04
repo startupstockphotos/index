@@ -8,11 +8,11 @@ import { Img } from '@/app/components/Img'
 import { Layout } from '@/app/components/Layout'
 import { Gutter } from '@/app/components/Gutter'
 
-export function getPaths () {
+export function getStaticPaths () {
   return ['/']
 }
 
-export function Page (props) {
+export function template (props) {
   const photos = load(
     () =>
       client.fetch(`

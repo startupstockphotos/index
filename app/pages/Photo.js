@@ -31,24 +31,10 @@ const photoQuery = `
   "slug": slug.current,
 `
 
-export async function getPaths () {
-  const photos = await cache(
-    async () =>
-      await client.fetch(`
-    *[_type == 'photo'] {
-      ${photoQuery}
-    } | order(_createdAt desc)
-    `),
-    { key: 'photos', duration: '1m' }
-  )
+export const route = '/photos/:slug'
 
-  photos.map(p => prime(p, { key: p.slug }))
-
-  return photos.map(p => `/photos/${p.slug}`)
-}
-
-export function Page (props) {
-  const [_, slug] = props.pathname.match(/photos\/(.+)/) || [] // eslint-disable-line
+export function template (props) {
+  const slug = props.params.slug
 
   const photo = load(
     () =>
