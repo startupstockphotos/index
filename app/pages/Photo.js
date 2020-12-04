@@ -1,6 +1,7 @@
 import { h } from 'hyposcript'
 import { Box } from 'hypobox'
 import { load, cache, prime } from 'presta/load'
+import { merge } from 'presta/utils/merge'
 
 import { client, image } from '@/app/lib/sanity'
 import { documentTitle } from '@/app/lib/documentTitle'
@@ -32,6 +33,14 @@ const photoQuery = `
 `
 
 export const route = '/photos/:slug'
+
+export function createResponse (context, response) {
+  return merge(response, {
+    headers: {
+      'Cache-Control': 'public, max-age=3600'
+    }
+  })
+}
 
 export function template (props) {
   const slug = props.params.slug
