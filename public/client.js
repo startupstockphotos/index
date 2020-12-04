@@ -1,756 +1,548 @@
-/******/ ;(function (modules) {
-  // webpackBootstrap
-  /******/ // The module cache
-  /******/ var installedModules = {} // The require function
-  /******/
-  /******/ /******/ function __webpack_require__ (moduleId) {
-    /******/
-    /******/ // Check if module is in cache
-    /******/ if (installedModules[moduleId]) {
-      /******/ return installedModules[moduleId].exports
-      /******/
-    } // Create a new module (and put it into the cache)
-    /******/ /******/ var module = (installedModules[moduleId] = {
-      /******/ i: moduleId,
-      /******/ l: false,
-      /******/ exports: {}
-      /******/
-    }) // Execute the module function
-    /******/
-    /******/ /******/ modules[moduleId].call(
-      module.exports,
-      module,
-      module.exports,
-      __webpack_require__
-    ) // Flag the module as loaded
-    /******/
-    /******/ /******/ module.l = true // Return the exports of the module
-    /******/
-    /******/ /******/ return module.exports
-    /******/
-  } // expose the modules object (__webpack_modules__)
-  /******/
-  /******/
-  /******/ /******/ __webpack_require__.m = modules // expose the module cache
-  /******/
-  /******/ /******/ __webpack_require__.c = installedModules // define getter function for harmony exports
-  /******/
-  /******/ /******/ __webpack_require__.d = function (exports, name, getter) {
-    /******/ if (!__webpack_require__.o(exports, name)) {
-      /******/ Object.defineProperty(exports, name, {
-        enumerable: true,
-        get: getter
-      })
-      /******/
-    }
-    /******/
-  } // define __esModule on exports
-  /******/
-  /******/ /******/ __webpack_require__.r = function (exports) {
-    /******/ if (typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-      /******/ Object.defineProperty(exports, Symbol.toStringTag, {
-        value: 'Module'
-      })
-      /******/
-    }
-    /******/ Object.defineProperty(exports, '__esModule', { value: true })
-    /******/
-  } // create a fake namespace object // mode & 1: value is a module id, require it // mode & 2: merge all properties of value into the ns // mode & 4: return value when already ns object // mode & 8|1: behave like require
-  /******/
-  /******/ /******/ /******/ /******/ /******/ /******/ __webpack_require__.t = function (
-    value,
-    mode
-  ) {
-    /******/ if (mode & 1) value = __webpack_require__(value)
-    /******/ if (mode & 8) return value
-    /******/ if (
-      mode & 4 &&
-      typeof value === 'object' &&
-      value &&
-      value.__esModule
-    )
-      return value
-    /******/ var ns = Object.create(null)
-    /******/ __webpack_require__.r(ns)
-    /******/ Object.defineProperty(ns, 'default', {
-      enumerable: true,
-      value: value
-    })
-    /******/ if (mode & 2 && typeof value != 'string')
-      for (var key in value)
-        __webpack_require__.d(
-          ns,
-          key,
-          function (key) {
-            return value[key]
-          }.bind(null, key)
-        )
-    /******/ return ns
-    /******/
-  } // getDefaultExport function for compatibility with non-harmony modules
-  /******/
-  /******/ /******/ __webpack_require__.n = function (module) {
-    /******/ var getter =
-      module && module.__esModule
-        ? /******/ function getDefault () {
-            return module['default']
-          }
-        : /******/ function getModuleExports () {
-            return module
-          }
-    /******/ __webpack_require__.d(getter, 'a', getter)
-    /******/ return getter
-    /******/
-  } // Object.prototype.hasOwnProperty.call
-  /******/
-  /******/ /******/ __webpack_require__.o = function (object, property) {
-    return Object.prototype.hasOwnProperty.call(object, property)
-  } // __webpack_public_path__
-  /******/
-  /******/ /******/ __webpack_require__.p = '' // Load entry module and return exports
-  /******/
-  /******/
-  /******/ /******/ return __webpack_require__(
-    (__webpack_require__.s = './client/index.js')
-  )
-  /******/
-})(
-  /************************************************************************/
-  /******/ {
-    /***/ './client/components/img.js':
-      /*!**********************************!*\
-  !*** ./client/components/img.js ***!
-  \**********************************/
-      /*! exports provided: img */
-      /***/ function (module, __webpack_exports__, __webpack_require__) {
-        'use strict'
-        __webpack_require__.r(__webpack_exports__)
-        /* harmony export (binding) */ __webpack_require__.d(
-          __webpack_exports__,
-          'img',
-          function () {
-            return img
-          }
-        )
-        /* harmony import */ var picoapp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-          /*! picoapp */ './node_modules/picoapp/dist/picoapp.es.js'
-        )
-        /* harmony import */ var vsbl__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-          /*! vsbl */ './node_modules/vsbl/dist/vsbl.es.js'
-        )
-
-        var img = Object(picoapp__WEBPACK_IMPORTED_MODULE_0__['component'])(
-          function (node, ctx) {
-            var image = node.querySelector('img')
-            var listener = Object(vsbl__WEBPACK_IMPORTED_MODULE_1__['default'])(
-              node
-            )(function () {
-              var i = document.createElement('img')
-
-              i.onload = function () {
-                image.src = i.src
-                image.style.opacity = 1
-              }
-
-              i.src = image.dataset.src
-            })
-            listener.update()
-            return function () {
-              listener && listener.destroy()
+!(function (t) {
+  var n = {}
+  function e (r) {
+    if (n[r]) return n[r].exports
+    var o = (n[r] = { i: r, l: !1, exports: {} })
+    return t[r].call(o.exports, o, o.exports, e), (o.l = !0), o.exports
+  }
+  ;(e.m = t),
+    (e.c = n),
+    (e.d = function (t, n, r) {
+      e.o(t, n) || Object.defineProperty(t, n, { enumerable: !0, get: r })
+    }),
+    (e.r = function (t) {
+      'undefined' != typeof Symbol &&
+        Symbol.toStringTag &&
+        Object.defineProperty(t, Symbol.toStringTag, { value: 'Module' }),
+        Object.defineProperty(t, '__esModule', { value: !0 })
+    }),
+    (e.t = function (t, n) {
+      if ((1 & n && (t = e(t)), 8 & n)) return t
+      if (4 & n && 'object' == typeof t && t && t.__esModule) return t
+      var r = Object.create(null)
+      if (
+        (e.r(r),
+        Object.defineProperty(r, 'default', { enumerable: !0, value: t }),
+        2 & n && 'string' != typeof t)
+      )
+        for (var o in t)
+          e.d(
+            r,
+            o,
+            function (n) {
+              return t[n]
+            }.bind(null, o)
+          )
+      return r
+    }),
+    (e.n = function (t) {
+      var n =
+        t && t.__esModule
+          ? function () {
+              return t.default
             }
-          }
-        )
+          : function () {
+              return t
+            }
+      return e.d(n, 'a', n), n
+    }),
+    (e.o = function (t, n) {
+      return Object.prototype.hasOwnProperty.call(t, n)
+    }),
+    (e.p = ''),
+    e((e.s = 0))
+})([
+  function (t, n, e) {
+    'use strict'
+    function r (t, n) {
+      for (var e = 0, r = t.length; e < r; e++) if (!n(t[e], e, t)) return !1
+      return !0
+    }
+    function o (t) {
+      if ('/' === t) return t
+      47 === t.charCodeAt(0) && (t = t.substring(1))
+      var n = t.length - 1
+      return 47 === t.charCodeAt(n) ? t.substring(0, n) : t
+    }
+    function i (t) {
+      return '/' === (t = o(t)) ? ['/'] : t.split('/')
+    }
+    function u (t, n, e) {
+      return (
+        (n.val === (e = t[e]) && 0 === n.type) ||
+        ('/' === e ? n.type > 1 : 0 !== n.type && (e || '').endsWith(n.end))
+      )
+    }
+    function a (t) {
+      if ('/' === t) return [{ old: t, type: 0, val: t, end: '' }]
+      for (
+        var n, e, r, i, u = o(t), a = -1, c = 0, f = u.length, l = [];
+        ++a < f;
 
-        /***/
-      },
-
-    /***/ './client/index.js':
-      /*!*************************!*\
-  !*** ./client/index.js ***!
-  \*************************/
-      /*! no exports provided */
-      /***/ function (module, __webpack_exports__, __webpack_require__) {
-        'use strict'
-        __webpack_require__.r(__webpack_exports__)
-        /* harmony import */ var operator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-          /*! operator */ './node_modules/operator/dist/operator.es.js'
-        )
-        /* harmony import */ var picoapp__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-          /*! picoapp */ './node_modules/picoapp/dist/picoapp.es.js'
-        )
-        /* harmony import */ var _client_components_img__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
-          /*! @/client/components/img */ './client/components/img.js'
-        )
-
-        var router = Object(operator__WEBPACK_IMPORTED_MODULE_0__['default'])(
-          '#root'
-        )
-        var app = Object(picoapp__WEBPACK_IMPORTED_MODULE_1__['picoapp'])({
-          img: _client_components_img__WEBPACK_IMPORTED_MODULE_2__['img']
-        })
-        app.mount()
-        router.on('after', function (_ref) {
-          var previousDocument = _ref.previousDocument,
-            location = _ref.location
-          document.head.replaceChild(
-            previousDocument.getElementById('style'),
-            document.getElementById('style')
-          )
-          document.title = previousDocument.title
-          window.history.pushState({}, '', location)
-          app.unmount()
-          app.mount()
-          window.scrollTo(0, 0)
-          if (window.gtag) window.gtag('event', 'page_view')
-        })
-
-        /***/
-      },
-
-    /***/ './node_modules/operator/dist/operator.es.js':
-      /*!***************************************************!*\
-  !*** ./node_modules/operator/dist/operator.es.js ***!
-  \***************************************************/
-      /*! exports provided: default */
-      /***/ function (module, __webpack_exports__, __webpack_require__) {
-        'use strict'
-        __webpack_require__.r(__webpack_exports__)
-        function n (n, t) {
-          for (var e = 0, r = n.length; e < r; e++)
-            if (!t(n[e], e, n)) return !1
-          return !0
-        }
-        function t (n) {
-          if ('/' === n) return n
-          47 === n.charCodeAt(0) && (n = n.substring(1))
-          var t = n.length - 1
-          return 47 === n.charCodeAt(t) ? n.substring(0, t) : n
-        }
-        function e (n) {
-          return '/' === (n = t(n)) ? ['/'] : n.split('/')
-        }
-        function r (n, t, e) {
-          return (
-            (t.val === (e = n[e]) && 0 === t.type) ||
-            ('/' === e ? t.type > 1 : 0 !== t.type && (e || '').endsWith(t.end))
-          )
-        }
-        function o (n) {
-          if ('/' === n) return [{ old: n, type: 0, val: n, end: '' }]
+      )
+        if (58 !== (n = u.charCodeAt(a)))
+          if (42 !== n) {
+            for (c = a; a < f && 47 !== u.charCodeAt(a); ) ++a
+            l.push({ old: t, type: 0, val: u.substring(c, a), end: '' }),
+              (u = u.substring(a)),
+              (f -= a),
+              (a = c = 0)
+          } else l.push({ old: t, type: 2, val: u.substring(a), end: '' })
+        else {
           for (
-            var e, r, o, a, i = t(n), c = -1, u = 0, l = i.length, s = [];
-            ++c < l;
+            c = a + 1, r = 1, e = 0, i = '';
+            a < f && 47 !== u.charCodeAt(a);
 
           )
-            if (58 !== (e = i.charCodeAt(c)))
-              if (42 !== e) {
-                for (u = c; c < l && 47 !== i.charCodeAt(c); ) ++c
-                s.push({ old: n, type: 0, val: i.substring(u, c), end: '' }),
-                  (i = i.substring(c)),
-                  (l -= c),
-                  (c = u = 0)
-              } else s.push({ old: n, type: 2, val: i.substring(c), end: '' })
-            else {
-              for (
-                u = c + 1, o = 1, r = 0, a = '';
-                c < l && 47 !== i.charCodeAt(c);
-
-              )
-                63 === (e = i.charCodeAt(c))
-                  ? ((r = c), (o = 3))
-                  : 46 === e && 0 === a.length && (a = i.substring((r = c))),
-                  c++
-              s.push({ old: n, type: o, val: i.substring(u, r || c), end: a }),
-                (i = i.substring(c)),
-                (l -= c),
-                (c = 0)
+            63 === (n = u.charCodeAt(a))
+              ? ((e = a), (r = 3))
+              : 46 === n && 0 === i.length && (i = u.substring((e = a))),
+              a++
+          l.push({ old: t, type: r, val: u.substring(c, e || a), end: i }),
+            (u = u.substring(a)),
+            (f -= a),
+            (a = 0)
+        }
+      return l
+    }
+    function c (t, n) {
+      for (var e, r, o = 0, u = i(t), a = {}; o < n.length; o++)
+        (r = n[o]),
+          '/' !== (e = u[o]) &&
+            void 0 !== e &&
+            !1 | r.type &&
+            (a[r.val] = e.replace(r.end, ''))
+      return a
+    }
+    e.r(n)
+    var f = new Map()
+    function l (t) {
+      return t.replace(window.location.origin, '')
+    }
+    function s (t, n) {
+      var e = '',
+        o = '',
+        a = t.split(/#|\?/),
+        f = a[0],
+        l = a.slice(1)
+      f = (f = f.replace(/\/$/g, '')) || '/'
+      for (var s = 0; s < l.length; s++) {
+        var d = t.split(l[s])[0]
+        '?' === d[d.length - 1] && (o = l[s]),
+          '#' === d[d.length - 1] && (e = l[s])
+      }
+      var p = (function (t, n) {
+          for (
+            var e, o, a = 0, c = i(t), f = c.length, l = u.bind(u, c);
+            a < n.length;
+            a++
+          )
+            if (
+              ((o = (e = n[a]).length) === f ||
+                (o < f && 2 === e[o - 1].type) ||
+                (o > f && 3 === e[o - 1].type)) &&
+              r(e, l)
+            )
+              return e
+          return []
+        })(
+          f,
+          n.map(function (t) {
+            return t.matcher
+          })
+        ),
+        h = n.filter(function (t) {
+          return t.path === p[0].old
+        })[0]
+      return p[0]
+        ? Object.assign({}, h, {
+            params: c(f, p),
+            hash: e,
+            search: o,
+            pathname: f,
+            location: t
+          })
+        : null
+    }
+    var d = function (t) {
+        if ('object' != typeof (n = t) || Array.isArray(n))
+          throw 'state should be an object'
+        var n
+      },
+      p = function (t, n, e, r) {
+        return ((o = t),
+        o.reduce(function (t, n, e) {
+          return t.indexOf(n) > -1 ? t : t.concat(n)
+        }, []))
+          .reduce(function (t, e) {
+            return t.concat(n[e] || [])
+          }, [])
+          .map(function (t) {
+            return t(e, r)
+          })
+        var o
+      }
+    function h (t) {
+      void 0 === t && (t = {})
+      var n = {}
+      return {
+        getState: function () {
+          return Object.assign({}, t)
+        },
+        hydrate: function (e) {
+          return (
+            d(e),
+            Object.assign(t, e),
+            function () {
+              var r = ['*'].concat(Object.keys(e))
+              p(r, n, t)
             }
-          return s
+          )
+        },
+        on: function (t, e) {
+          return (
+            (t = [].concat(t)).map(function (t) {
+              return (n[t] = (n[t] || []).concat(e))
+            }),
+            function () {
+              return t.map(function (t) {
+                return n[t].splice(n[t].indexOf(e), 1)
+              })
+            }
+          )
+        },
+        emit: function (e, r, o) {
+          var i = ('*' === e ? [] : ['*']).concat(e)
+          ;(r = 'function' == typeof r ? r(t) : r) &&
+            (d(r), Object.assign(t, r), (i = i.concat(Object.keys(r)))),
+            p(i, n, t, o)
         }
-        function a (n, t) {
-          for (var r, o, a = 0, i = e(n), c = {}; a < t.length; a++)
-            (o = t[a]),
-              '/' !== (r = i[a]) &&
-                void 0 !== r &&
-                !1 | o.type &&
-                (c[o.val] = r.replace(o.end, ''))
-          return c
-        }
-        var i = new Map()
-        function c (n) {
-          return n.replace(window.location.origin, '')
-        }
-        function u (t, o) {
-          var i = '',
-            c = '',
-            u = t.split(/#|\?/),
-            l = u[0],
-            s = u.slice(1)
-          l = (l = l.replace(/\/$/g, '')) || '/'
-          for (var f = 0; f < s.length; f++) {
-            var h = t.split(s[f])[0]
-            '?' === h[h.length - 1] && (c = s[f]),
-              '#' === h[h.length - 1] && (i = s[f])
-          }
-          var d = (function (t, o) {
-              for (
-                var a, i, c = 0, u = e(t), l = u.length, s = r.bind(r, u);
-                c < o.length;
-                c++
+      }
+    }
+    h()
+    var v = function (t) {
+        return 'object' == typeof t && !Array.isArray(t)
+      },
+      g = function (t) {
+        return 'function' == typeof t
+      }
+    var m,
+      y,
+      b,
+      w,
+      O,
+      j,
+      A,
+      x,
+      S,
+      P = []
+    function C (t, n) {
+      return (
+        (y = window.pageXOffset),
+        (w = window.pageYOffset),
+        (j = window.innerHeight),
+        (x = window.innerWidth),
+        void 0 === b && (b = y),
+        void 0 === O && (O = w),
+        void 0 === S && (S = x),
+        void 0 === A && (A = j),
+        (n || w !== O || y !== b || j !== A || x !== S) &&
+          ((function (t) {
+            for (var n = 0; n < P.length; n++)
+              P[n](
+                { x: y, y: w, px: b, py: O, vh: j, pvh: A, vw: x, pvw: S },
+                t
               )
-                if (
-                  ((i = (a = o[c]).length) === l ||
-                    (i < l && 2 === a[i - 1].type) ||
-                    (i > l && 3 === a[i - 1].type)) &&
-                  n(a, s)
-                )
-                  return a
-              return []
-            })(
-              l,
-              o.map(function (n) {
-                return n.matcher
+          })(t),
+          (b = y),
+          (O = w),
+          (A = j),
+          (S = x)),
+        requestAnimationFrame(C)
+      )
+    }
+    var M,
+      _ = function (t, n) {
+        return (
+          void 0 === n && (n = {}),
+          function (e, r) {
+            var o = !1,
+              i = parseFloat(
+                t.getAttribute('data-threshold') || n.threshold || 0
+              )
+            return (function (t) {
+              return (
+                P.indexOf(t) < 0 && P.push(t),
+                (m = m || C(performance.now())),
+                {
+                  update: function () {
+                    return C(performance.now(), !0), this
+                  },
+                  destroy: function () {
+                    P.splice(P.indexOf(t), 1)
+                  }
+                }
+              )
+            })(function () {
+              for (var n = [], u = arguments.length; u--; ) n[u] = arguments[u]
+              var a = n[0],
+                c = a.y,
+                f = a.vh,
+                l = t.getBoundingClientRect(),
+                s = l.top + c,
+                d = i >= 0.5 ? i : i * f,
+                p = s + l.height - d >= c && s + d <= c + f
+              p && !o
+                ? ((o = !0), e && e.apply(void 0, n))
+                : !p && o && ((o = !1), r && r.apply(void 0, n))
+            })
+          }
+        )
+      },
+      q =
+        ((M = function (t, n) {
+          var e = t.querySelector('img'),
+            r = _(t)(function () {
+              var t = document.createElement('img')
+              ;(t.onload = function () {
+                ;(e.src = t.src), (e.style.opacity = 1)
+              }),
+                (t.src = e.dataset.src)
+            })
+          return (
+            r.update(),
+            function () {
+              r && r.destroy()
+            }
+          )
+        }),
+        function (t, n) {
+          var e = []
+          return {
+            subs: e,
+            unmount: M(
+              t,
+              Object.assign({}, n, {
+                on: function (t, r) {
+                  var o = n.on(t, r)
+                  return e.push(o), o
+                }
               })
             ),
-            p = o.filter(function (n) {
-              return n.path === d[0].old
-            })[0]
-          return d[0]
-            ? Object.assign({}, p, {
-                params: a(l, d),
-                hash: i,
-                search: c,
-                pathname: l,
-                location: t
+            node: t
+          }
+        }),
+      D = (function (t, n) {
+        void 0 === n && (n = ['*'])
+        var e,
+          r = document.querySelector(t),
+          o = [],
+          i = {}
+        ;(n = n
+          .concat(n.indexOf('*') < 0 ? '*' : [])
+          .reduce(function (t, n) {
+            return 'function' == typeof n ? (o.push(n), t) : t.concat(n)
+          }, [])
+          .map(function (t) {
+            return t.path
+              ? Object.assign({}, t, { matcher: a(t.path) })
+              : { path: t, matcher: a(t) }
+          })),
+          'scrollRestoration' in history &&
+            (history.scrollRestoration = 'manual')
+        var u = s(l(window.location.href), n),
+          c = Object.assign({ previousDocument: null }, u)
+        function d (t) {
+          return i[t]
+            ? i[t].map(function (t) {
+                return t(c)
               })
-            : null
+            : []
         }
-        /* harmony default export */ __webpack_exports__['default'] = function (
-          n,
-          t
-        ) {
-          void 0 === t && (t = ['*'])
-          var e,
-            r = document.querySelector(n),
-            a = [],
-            l = {}
-          ;(t = t
-            .concat(t.indexOf('*') < 0 ? '*' : [])
-            .reduce(function (n, t) {
-              return 'function' == typeof t ? (a.push(t), n) : n.concat(t)
-            }, [])
-            .map(function (n) {
-              return n.path
-                ? Object.assign({}, n, { matcher: o(n.path) })
-                : { path: n, matcher: o(n) }
-            })),
-            'scrollRestoration' in history &&
-              (history.scrollRestoration = 'manual')
-          var s = u(c(window.location.href), t),
-            f = Object.assign({ previousDocument: null }, s)
-          function h (n) {
-            return l[n]
-              ? l[n].map(function (n) {
-                  return n(f)
+        function p (t, n, e, i) {
+          ;(c.previousDocument = t.cloneNode(!0)),
+            Promise.all(
+              o.concat(e.handler || []).map(function (t) {
+                return t(c)
+              })
+            ).then(function () {
+              window.scrollTo(0, 0),
+                requestAnimationFrame(function () {
+                  ;(r.innerHTML = n), d('after'), e.hash && d('hash')
                 })
-              : []
-          }
-          function d (n, t, e, o) {
-            ;(f.previousDocument = n.cloneNode(!0)),
-              Promise.all(
-                a.concat(e.handler || []).map(function (n) {
-                  return n(f)
-                })
-              ).then(function () {
-                window.scrollTo(0, 0),
-                  requestAnimationFrame(function () {
-                    ;(r.innerHTML = t), h('after'), e.hash && h('hash')
-                  })
-              })
-          }
-          function p (t, e, r) {
-            if (!e) return (window.location.href = t)
-            fetch(t, { credentials: 'include' })
-              .then(function (n) {
-                return n.text()
-              })
-              .then(function (o) {
-                var a = new window.DOMParser().parseFromString(o, 'text/html'),
-                  c = [a, a.querySelector(n).innerHTML]
-                i.set(t, c), r && r(c[0], c[1], e)
-              })
-          }
-          function g (n, t, r) {
-            ;(e = function () {
-              var e = i.get(n)
-              e && !1 !== t.cache ? d(e[0], e[1], t) : p(n, t, d)
-            }),
-              Object.assign(f, t),
-              Promise.all(h('before')).then(e)
-          }
-          function v (n) {
-            var e = c(n)
-            return [e, u(e, t)]
-          }
-          return (
-            document.body.addEventListener('click', function (n) {
-              if (
-                !(
-                  n.ctrlKey ||
-                  n.metaKey ||
-                  n.altKey ||
-                  n.shiftKey ||
-                  n.defaultPrevented
-                )
-              ) {
-                for (var t = n.target; t && (!t.href || 'A' !== t.nodeName); )
-                  t = t.parentNode
-                if (!t) return n
-                var e = v(t.href),
-                  r = e[0],
-                  o = e[1]
-                return o.ignore
-                  ? n
-                  : f.pathname === o.pathname && o.hash
-                  ? (n.preventDefault(), Object.assign(f, o), h('hash'), n)
-                  : window.location.origin !== t.origin ||
-                    t.hasAttribute('download') ||
-                    '_blank' === t.target ||
-                    /^(?:mailto|tel):/.test(t.href) ||
-                    t.classList.contains('no-ajax')
-                  ? n
-                  : (n.preventDefault(),
-                    f.location !== r && g(r, o),
-                    h('navigate'),
-                    !1)
-              }
-            }),
-            window.addEventListener('popstate', function (n) {
-              if (n.target.location.pathname !== f.pathname)
-                return (
-                  g.apply(void 0, v(n.target.location.href).concat([!0])), !1
-                )
-            }),
-            {
-              get state () {
-                return f
-              },
-              go: function (n) {
-                ;(e = null), g.apply(void 0, v(n).concat([!1]))
-              },
-              load: function (n, t) {
-                return p.apply(void 0, v(n).concat([t]))
-              },
-              on: function (n, t) {
-                return (
-                  (l[n] = l[n] ? l[n].concat(t) : [t]),
-                  function () {
-                    return l[n].slice(l[n].indexOf(t), 1)
-                  }
-                )
-              }
+            })
+        }
+        function h (n, e, r) {
+          if (!e) return (window.location.href = n)
+          fetch(n, { credentials: 'include' })
+            .then(function (t) {
+              return t.text()
+            })
+            .then(function (o) {
+              var i = new window.DOMParser().parseFromString(o, 'text/html'),
+                u = [i, i.querySelector(t).innerHTML]
+              f.set(n, u), r && r(u[0], u[1], e)
+            })
+        }
+        function v (t, n, r) {
+          ;(e = function () {
+            var e = f.get(t)
+            e && !1 !== n.cache ? p(e[0], e[1], n) : h(t, n, p)
+          }),
+            Object.assign(c, n),
+            Promise.all(d('before')).then(e)
+        }
+        function g (t) {
+          var e = l(t)
+          return [e, s(e, n)]
+        }
+        return (
+          document.body.addEventListener('click', function (t) {
+            if (
+              !(
+                t.ctrlKey ||
+                t.metaKey ||
+                t.altKey ||
+                t.shiftKey ||
+                t.defaultPrevented
+              )
+            ) {
+              for (var n = t.target; n && (!n.href || 'A' !== n.nodeName); )
+                n = n.parentNode
+              if (!n) return t
+              var e = g(n.href),
+                r = e[0],
+                o = e[1]
+              return o.ignore
+                ? t
+                : c.pathname === o.pathname && o.hash
+                ? (t.preventDefault(), Object.assign(c, o), d('hash'), t)
+                : window.location.origin !== n.origin ||
+                  n.hasAttribute('download') ||
+                  '_blank' === n.target ||
+                  /^(?:mailto|tel):/.test(n.href) ||
+                  n.classList.contains('no-ajax')
+                ? t
+                : (t.preventDefault(),
+                  c.location !== r && v(r, o),
+                  d('navigate'),
+                  !1)
             }
-          )
-        }
-        //# sourceMappingURL=operator.es.js.map
-
-        /***/
-      },
-
-    /***/ './node_modules/picoapp/dist/picoapp.es.js':
-      /*!*************************************************!*\
-  !*** ./node_modules/picoapp/dist/picoapp.es.js ***!
-  \*************************************************/
-      /*! exports provided: component, picoapp */
-      /***/ function (module, __webpack_exports__, __webpack_require__) {
-        'use strict'
-        __webpack_require__.r(__webpack_exports__)
-        /* harmony export (binding) */ __webpack_require__.d(
-          __webpack_exports__,
-          'component',
-          function () {
-            return u
-          }
-        )
-        /* harmony export (binding) */ __webpack_require__.d(
-          __webpack_exports__,
-          'picoapp',
-          function () {
-            return c
-          }
-        )
-        var n = function (n) {
-            if ('object' != typeof (t = n) || Array.isArray(t))
-              throw 'state should be an object'
-            var t
-          },
-          t = function (n, t, r, e) {
-            return ((o = n),
-            o.reduce(function (n, t, r) {
-              return n.indexOf(t) > -1 ? n : n.concat(t)
-            }, []))
-              .reduce(function (n, r) {
-                return n.concat(t[r] || [])
-              }, [])
-              .map(function (n) {
-                return n(r, e)
-              })
-            var o
-          }
-        function r (r) {
-          void 0 === r && (r = {})
-          var e = {}
-          return {
-            getState: function () {
-              return Object.assign({}, r)
+          }),
+          window.addEventListener('popstate', function (t) {
+            if (t.target.location.pathname !== c.pathname)
+              return v.apply(void 0, g(t.target.location.href).concat([!0])), !1
+          }),
+          {
+            get state () {
+              return c
             },
-            hydrate: function (o) {
+            go: function (t) {
+              ;(e = null), v.apply(void 0, g(t).concat([!1]))
+            },
+            load: function (t, n) {
+              return h.apply(void 0, g(t).concat([n]))
+            },
+            on: function (t, n) {
               return (
-                n(o),
-                Object.assign(r, o),
+                (i[t] = i[t] ? i[t].concat(n) : [n]),
                 function () {
-                  var n = ['*'].concat(Object.keys(o))
-                  t(n, e, r)
+                  return i[t].slice(i[t].indexOf(n), 1)
                 }
               )
-            },
-            on: function (n, t) {
-              return (
-                (n = [].concat(n)).map(function (n) {
-                  return (e[n] = (e[n] || []).concat(t))
-                }),
-                function () {
-                  return n.map(function (n) {
-                    return e[n].splice(e[n].indexOf(t), 1)
-                  })
-                }
-              )
-            },
-            emit: function (o, u, c) {
-              var i = ('*' === o ? [] : ['*']).concat(o)
-              ;(u = 'function' == typeof u ? u(r) : u) &&
-                (n(u), Object.assign(r, u), (i = i.concat(Object.keys(u)))),
-                t(i, e, r, c)
             }
           }
-        }
-        r()
-        var e = function (n) {
-            return 'object' == typeof n && !Array.isArray(n)
-          },
-          o = function (n) {
-            return 'function' == typeof n
-          }
-        function u (n) {
-          return function (t, r) {
-            var e = []
-            return {
-              subs: e,
-              unmount: n(
-                t,
-                Object.assign({}, r, {
-                  on: function (n, t) {
-                    var o = r.on(n, t)
-                    return e.push(o), o
-                  }
-                })
-              ),
-              node: t
-            }
-          }
-        }
-        function c (n, t, u) {
+        )
+      })('#root'),
+      T = (function (t, n, e) {
+        void 0 === t && (t = {}),
           void 0 === n && (n = {}),
-            void 0 === t && (t = {}),
-            void 0 === u && (u = [])
-          var c = r(t),
-            i = []
-          return {
-            on: c.on,
-            emit: c.emit,
-            getState: function () {
-              return c.getState()
-            },
-            add: function (t) {
-              if (!e(t)) throw 'components should be an object'
-              Object.assign(n, t)
-            },
-            use: function (n) {
-              if (!o(n)) throw 'plugins should be a function'
-              u.push(n)
-            },
-            hydrate: function (n) {
-              return c.hydrate(n)
-            },
-            mount: function (t) {
-              void 0 === t && (t = 'data-component'), (t = [].concat(t))
-              for (var r = 0; r < t.length; r++) {
-                for (
-                  var a = t[r],
-                    f = [].slice.call(document.querySelectorAll('[' + a + ']')),
-                    s = function () {
-                      for (
-                        var t = f.pop(),
-                          r = t.getAttribute(a).split(/\s/),
-                          s = 0;
-                        s < r.length;
-                        s++
-                      ) {
-                        var v = n[r[s]]
-                        if (v) {
-                          t.removeAttribute(a)
-                          try {
-                            var d = u.reduce(function (n, r) {
-                                var o = r(t, c)
-                                return e(o) ? Object.assign(n, o) : n
-                              }, {}),
-                              m = v(t, Object.assign({}, d, c))
-                            o(m.unmount) && i.push(m)
-                          } catch (n) {
-                            console.error(n),
-                              c.emit('error', { error: n }),
-                              c.hydrate({ error: void 0 })
-                          }
+          void 0 === e && (e = [])
+        var r = h(n),
+          o = []
+        return {
+          on: r.on,
+          emit: r.emit,
+          getState: function () {
+            return r.getState()
+          },
+          add: function (n) {
+            if (!v(n)) throw 'components should be an object'
+            Object.assign(t, n)
+          },
+          use: function (t) {
+            if (!g(t)) throw 'plugins should be a function'
+            e.push(t)
+          },
+          hydrate: function (t) {
+            return r.hydrate(t)
+          },
+          mount: function (n) {
+            void 0 === n && (n = 'data-component'), (n = [].concat(n))
+            for (var i = 0; i < n.length; i++) {
+              for (
+                var u = n[i],
+                  a = [].slice.call(document.querySelectorAll('[' + u + ']')),
+                  c = function () {
+                    for (
+                      var n = a.pop(), i = n.getAttribute(u).split(/\s/), c = 0;
+                      c < i.length;
+                      c++
+                    ) {
+                      var f = t[i[c]]
+                      if (f) {
+                        n.removeAttribute(u)
+                        try {
+                          var l = e.reduce(function (t, e) {
+                              var o = e(n, r)
+                              return v(o) ? Object.assign(t, o) : t
+                            }, {}),
+                            s = f(n, Object.assign({}, l, r))
+                          g(s.unmount) && o.push(s)
+                        } catch (t) {
+                          console.error(t),
+                            r.emit('error', { error: t }),
+                            r.hydrate({ error: void 0 })
                         }
                       }
-                    };
-                  f.length;
+                    }
+                  };
+                a.length;
 
-                )
-                  s()
-                c.emit('mount')
-              }
-            },
-            unmount: function () {
-              for (var n = i.length - 1; n > -1; n--) {
-                var t = i[n],
-                  r = t.subs
-                ;(0, t.unmount)(t.node),
-                  r.map(function (n) {
-                    return n()
-                  }),
-                  i.splice(n, 1)
-              }
-              c.emit('unmount')
+              )
+                c()
+              r.emit('mount')
             }
+          },
+          unmount: function () {
+            for (var t = o.length - 1; t > -1; t--) {
+              var n = o[t],
+                e = n.subs
+              ;(0, n.unmount)(n.node),
+                e.map(function (t) {
+                  return t()
+                }),
+                o.splice(t, 1)
+            }
+            r.emit('unmount')
           }
         }
-        //# sourceMappingURL=picoapp.es.js.map
-
-        /***/
-      },
-
-    /***/ './node_modules/srraf/dist/srraf.es.js':
-      /*!*********************************************!*\
-  !*** ./node_modules/srraf/dist/srraf.es.js ***!
-  \*********************************************/
-      /*! exports provided: default */
-      /***/ function (module, __webpack_exports__, __webpack_require__) {
-        'use strict'
-        __webpack_require__.r(__webpack_exports__)
-        var n,
-          e,
-          i,
-          o,
-          t,
-          r,
-          f,
-          d,
-          p,
-          u = []
-        function w (n, a) {
-          return (
-            (e = window.pageXOffset),
-            (o = window.pageYOffset),
-            (r = window.innerHeight),
-            (d = window.innerWidth),
-            void 0 === i && (i = e),
-            void 0 === t && (t = o),
-            void 0 === p && (p = d),
-            void 0 === f && (f = r),
-            (a || o !== t || e !== i || r !== f || d !== p) &&
-              (!(function (n) {
-                for (var w = 0; w < u.length; w++)
-                  u[w](
-                    { x: e, y: o, px: i, py: t, vh: r, pvh: f, vw: d, pvw: p },
-                    n
-                  )
-              })(n),
-              (i = e),
-              (t = o),
-              (f = r),
-              (p = d)),
-            requestAnimationFrame(w)
-          )
-        }
-        /* harmony default export */ __webpack_exports__['default'] = function (
-          e
-        ) {
-          return (
-            u.indexOf(e) < 0 && u.push(e),
-            (n = n || w(performance.now())),
-            {
-              update: function () {
-                return w(performance.now(), !0), this
-              },
-              destroy: function () {
-                u.splice(u.indexOf(e), 1)
-              }
-            }
-          )
-        }
-        //# sourceMappingURL=srraf.es.js.map
-
-        /***/
-      },
-
-    /***/ './node_modules/vsbl/dist/vsbl.es.js':
-      /*!*******************************************!*\
-  !*** ./node_modules/vsbl/dist/vsbl.es.js ***!
-  \*******************************************/
-      /*! exports provided: default */
-      /***/ function (module, __webpack_exports__, __webpack_require__) {
-        'use strict'
-        __webpack_require__.r(__webpack_exports__)
-        /* harmony import */ var srraf__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-          /*! srraf */ './node_modules/srraf/dist/srraf.es.js'
-        )
-        /* harmony default export */ __webpack_exports__['default'] = function (
-          r,
-          o
-        ) {
-          return (
-            void 0 === o && (o = {}),
-            function (e, n) {
-              var a = !1,
-                i = parseFloat(
-                  r.getAttribute('data-threshold') || o.threshold || 0
-                )
-              return Object(srraf__WEBPACK_IMPORTED_MODULE_0__['default'])(
-                function () {
-                  for (var t = [], o = arguments.length; o--; )
-                    t[o] = arguments[o]
-                  var d = t[0],
-                    h = d.y,
-                    l = d.vh,
-                    p = r.getBoundingClientRect(),
-                    u = p.top + h,
-                    f = i >= 0.5 ? i : i * l,
-                    v = u + p.height - f >= h && u + f <= h + l
-                  v && !a
-                    ? ((a = !0), e && e.apply(void 0, t))
-                    : !v && a && ((a = !1), n && n.apply(void 0, t))
-                }
-              )
-            }
-          )
-        }
-        //# sourceMappingURL=vsbl.es.js.map
-
-        /***/
-      }
-
-    /******/
+      })({ img: q })
+    T.mount(),
+      D.on('after', function (t) {
+        var n = t.previousDocument,
+          e = t.location
+        document.head.replaceChild(
+          n.getElementById('style'),
+          document.getElementById('style')
+        ),
+          (document.title = n.title),
+          window.history.pushState({}, '', e),
+          T.unmount(),
+          T.mount(),
+          window.scrollTo(0, 0),
+          window.gtag && window.gtag('event', 'page_view')
+      })
   }
-)
+])
 //# sourceMappingURL=client.js.map
