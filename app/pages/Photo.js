@@ -44,7 +44,7 @@ export function template (props) {
         }[0]`,
         { slug }
       ),
-    { key: slug, duration: '1m' }
+    { key: slug }
   )
 
   if (!photo) return null
