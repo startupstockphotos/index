@@ -45,7 +45,7 @@ export function template (props) {
 
   if (!photos || !page) return
 
-  props.head({
+  props.plugins.head({
     title: page.metaTitle,
     description: page.metaDescription,
     image: image(page.metaImage)

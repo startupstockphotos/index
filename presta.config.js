@@ -13,14 +13,14 @@ export const pages = './app/pages/**/*.js'
 
 export function createContent (ctx) {
   return document({
-    body: `<div id="root">${ctx.content}</div>`,
+    body: `<div id="root">${ctx.props.content}</div>`,
     foot: {
       script: [
         { src: '/client.js' },
         `<div id='div-gpt-ad-1580157483474-0' style='width: 1px; height: 1px;'><script>googletag.cmd.push(function(){googletag.display('div-gpt-ad-1580157483474-0'); });</script>`
       ]
     },
-    head: merge(ctx.head, {
+    head: merge(ctx.props.head, {
       og: {
         site_name: name,
         url

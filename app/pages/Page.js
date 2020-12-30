@@ -18,7 +18,7 @@ export async function getStaticPaths () {
   return pages.map(p => p.slug)
 }
 
-export function template ({ path: slug, head }) {
+export function template ({ path: slug, plugins }) {
   const page = load(
     () =>
       client.fetch(
@@ -38,7 +38,7 @@ export function template ({ path: slug, head }) {
 
   if (!page) return ''
 
-  head({
+  plugins.head({
     title: page.metaTitle,
     description: page.metaDescription,
     image: image(page.metaImage)

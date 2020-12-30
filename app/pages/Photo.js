@@ -1,6 +1,6 @@
 import { h } from 'hyposcript'
 import { Box } from 'hypobox'
-import { load, cache, prime } from 'presta/load'
+import { load } from 'presta/load'
 import { merge } from 'presta/utils/merge'
 
 import { client, image } from '@/app/lib/sanity'
@@ -37,7 +37,7 @@ export const route = '/photos/:slug'
 export function createResponse (context, response) {
   return merge(response, {
     headers: {
-      'Cache-Control': 'public, max-age=3600'
+      'Cache-Control': 'public, max-age=3600, s-max-age=3600'
     }
   })
 }
@@ -58,7 +58,7 @@ export function template (props) {
 
   if (!photo) return null
 
-  props.head({
+  props.plugins.head({
     title: documentTitle('#' + photo.title),
     description: photo.description || `SSP #${photo.slug}`,
     image: image(photo.image)
