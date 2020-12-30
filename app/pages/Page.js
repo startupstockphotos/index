@@ -8,7 +8,7 @@ import { Layout } from '@/app/components/Layout'
 import { Gutter } from '@/app/components/Gutter'
 import { Markdown } from '@/app/components/Markdown'
 
-export async function getPaths () {
+export async function getStaticPaths () {
   const pages = await client.fetch(`
     *[_type == 'page']{
       "slug": slug.current
@@ -18,7 +18,7 @@ export async function getPaths () {
   return pages.map(p => p.slug)
 }
 
-export function Page ({ pathname: slug, head }) {
+export function template ({ path: slug, plugins }) {
   const page = load(
     () =>
       client.fetch(
@@ -38,7 +38,7 @@ export function Page ({ pathname: slug, head }) {
 
   if (!page) return ''
 
-  head({
+  plugins.head({
     title: page.metaTitle,
     description: page.metaDescription,
     image: image(page.metaImage)

@@ -1,6 +1,7 @@
 import { h } from 'hyposcript'
 import { Box } from 'hypobox'
-import { load, cache, prime } from 'presta/load'
+import { load } from 'presta/load'
+import { merge } from 'presta/utils/merge'
 
 import { client, image } from '@/app/lib/sanity'
 import { documentTitle } from '@/app/lib/documentTitle'
@@ -31,24 +32,18 @@ const photoQuery = `
   "slug": slug.current,
 `
 
-export async function getPaths () {
-  const photos = await cache(
-    async () =>
-      await client.fetch(`
-    *[_type == 'photo'] {
-      ${photoQuery}
-    } | order(_createdAt desc)
-    `),
-    { key: 'photos', duration: '1m' }
-  )
+export const route = '/photos/:slug'
 
-  photos.map(p => prime(p, { key: p.slug }))
-
-  return photos.map(p => `/photos/${p.slug}`)
+export function createResponse (context, response) {
+  return merge(response, {
+    headers: {
+      'Cache-Control': 'public, max-age=3600, s-max-age=3600'
+    }
+  })
 }
 
-export function Page (props) {
-  const [_, slug] = props.pathname.match(/photos\/(.+)/) || [] // eslint-disable-line
+export function template (props) {
+  const slug = props.params.slug
 
   const photo = load(
     () =>
@@ -63,7 +58,7 @@ export function Page (props) {
 
   if (!photo) return null
 
-  props.head({
+  props.plugins.head({
     title: documentTitle('#' + photo.title),
     description: photo.description || `SSP #${photo.slug}`,
     image: image(photo.image)

@@ -8,11 +8,11 @@ import { Img } from '@/app/components/Img'
 import { Layout } from '@/app/components/Layout'
 import { Gutter } from '@/app/components/Gutter'
 
-export function getPaths () {
+export function getStaticPaths () {
   return ['/']
 }
 
-export function Page (props) {
+export function template (props) {
   const photos = load(
     () =>
       client.fetch(`
@@ -40,12 +40,12 @@ export function Page (props) {
           description,
       }[0]
     `),
-    { key: 'indexPage' }
+    { key: 'indexPage', duration: '30s' }
   )
 
   if (!photos || !page) return
 
-  props.head({
+  props.plugins.head({
     title: page.metaTitle,
     description: page.metaDescription,
     image: image(page.metaImage)

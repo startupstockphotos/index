@@ -2,13 +2,12 @@
   "name": "ssp",
   "private": true,
   "scripts": {
-    "start": "npm run build && concurrently -- 'npm run site:watch' 'npm run client:watch' 'npm run serve'",
-    "site:watch": "npm run static:copy && presta watch",
+    "start": "npm run build && concurrently -- 'npm run site:watch' 'npm run client:watch'",
+    "site:watch": "presta watch",
     "site:build": "presta build",
     "client:watch": "webpack -w",
     "client:build": "webpack -p",
-    "static:copy": "mkdir -p build/static && cp -R static/* build/static",
-    "build": "npm run site:build && NODE_ENV=production npm run client:build && npm run static:copy",
+    "build": "NODE_ENV=production npm run client:build && npm run site:build",
     "netlify": "npm run build && netlify dev",
     "serve": "presta serve",
     "format": "prettier-standard --format",
@@ -27,7 +26,7 @@
     "marked": "^1.2.2",
     "operator": "^1.7.0",
     "picoapp": "^3.6.2",
-    "presta": "^0.13.0",
+    "presta": "^0.23.6",
     "vsbl": "^1.3.3"
   },
   "devDependencies": {

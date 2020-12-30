@@ -1,5 +1,6 @@
 [build]
-  publish = "./build"
+  publish = "./build/static"
+  functions = "./build/functions"
 
 [[redirects]]
   from = "/terms-of-use"
@@ -8,6 +9,5 @@
 
 [[redirects]]
   from = "/*"
-  to = "/index.html"
-  status = 410
-  force = false
+  to = "/.netlify/functions/presta"
+  status = 200

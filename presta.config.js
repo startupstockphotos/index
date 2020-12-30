@@ -1,6 +1,6 @@
-import { h } from 'hyposcript'
 import { configure, getCss } from 'hypobox'
 import { document } from 'presta/document'
+import { merge } from 'presta/utils/merge'
 
 import { theme } from '@/app/lib/theme'
 
@@ -11,16 +11,16 @@ const url = `https://startupstockphotos.com`
 
 export const pages = './app/pages/**/*.js'
 
-export function createDocument (ctx) {
-  return document(ctx, {
-    body: `<div id="root">${ctx.body}</div>`,
+export function createContent (ctx) {
+  return document({
+    body: `<div id="root">${ctx.props.content}</div>`,
     foot: {
       script: [
         { src: '/client.js' },
         `<div id='div-gpt-ad-1580157483474-0' style='width: 1px; height: 1px;'><script>googletag.cmd.push(function(){googletag.display('div-gpt-ad-1580157483474-0'); });</script>`
       ]
     },
-    head: {
+    head: merge(ctx.props.head, {
       og: {
         site_name: name,
         url
@@ -35,8 +35,8 @@ export function createDocument (ctx) {
         { name: 'author', content: 'https://twitter.com/JHKrak' }
       ],
       link: [
-        { rel: 'icon', type: 'image/png', href: '/static/favicon.png' },
-        { rel: 'stylesheet', href: '/static/style.css' }
+        { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+        { rel: 'stylesheet', href: '/style.css' }
       ],
       style: [{ id: 'style', children: getCss() }],
       script: [
@@ -73,6 +73,6 @@ export function createDocument (ctx) {
         </script>
         `
       ]
-    }
+    })
   })
 }
