@@ -1,60 +1,54 @@
 import { h } from 'hyposcript'
 import { Box } from 'hypobox'
-import { load } from 'presta/load'
+import { html } from 'presta/html'
+import { cache } from 'presta/load'
+import merge from 'deepmerge'
 
 import { client, image } from '@/app/lib/sanity'
+import { hypostyle } from '@/app/lib/hypostyle'
+import { head } from '@/app/lib/head'
+import { foot } from '@/app/lib/foot'
 
 import { Img } from '@/app/components/Img'
 import { Layout } from '@/app/components/Layout'
 import { Gutter } from '@/app/components/Gutter'
 
-export function getPaths () {
+export function getStaticPaths () {
   return ['/']
 }
 
-export function Page (props) {
-  const photos = load(
+export async function handler () {
+  const photos = await cache(
     () =>
       client.fetch(`
-      *[_type == 'photo']{
-          title,
-          slug,
-          image,
-          "palette": image.asset->metadata.palette {
-            dominant,
-          },
-          "username": user->username.current,
-      } | order(_createdAt desc)
-    `),
-    { key: 'indexPhotos', duration: '5m' }
+    *[_type == 'photo']{
+        title,
+        slug,
+        image,
+        "palette": image.asset->metadata.palette {
+          dominant,
+        },
+        "username": user->username.current,
+    } | order(_createdAt desc)
+  `),
+    { key: 'homePhotos', duration: 1000 * 60 }
   )
-  const page = load(
+  const page = await cache(
     () =>
       client.fetch(`
-      *[_type == 'root']{
-          metaTitle,
-          metaDescription,
-          metaImage,
-          metaKeywords,
-          title,
-          description,
-      }[0]
-    `),
-    { key: 'indexPage', duration: '30s' }
+    *[_type == 'root']{
+        metaTitle,
+        metaDescription,
+        metaImage,
+        metaKeywords,
+        title,
+        description,
+    }[0]
+  `),
+    { key: 'index', duration: 1000 * 60 }
   )
 
-  if (!photos || !page) return
-
-  props.head({
-    title: page.metaTitle,
-    description: page.metaDescription,
-    image: image(page.metaImage)
-      .width(1200)
-      .url(),
-    meta: [{ name: 'keywords', content: page.metaKeywords }]
-  })
-
-  return (
+  const body = (
     <Layout>
       <Gutter>
         <Box py={[8, 8, 12]}>
@@ -79,8 +73,9 @@ export function Page (props) {
               <Box
                 as='a'
                 db
+                rel
                 href={`/photos/${photo.slug.current}`}
-                css={{
+                cx={{
                   ':focus': {
                     outline: '0'
                   },
@@ -104,7 +99,7 @@ export function Page (props) {
                   c='d'
                   className='box'
                   bg='black'
-                  css={{
+                  cx={{
                     opacity: 0,
                     transition: `opacity 300ms cubic-bezier(.01,.79,.35,.99)`
                     // boxShadow: 'inset 0 0 0 4px'
@@ -117,4 +112,20 @@ export function Page (props) {
       </Box>
     </Layout>
   )
+
+  return {
+    html: html({
+      head: merge(head, {
+        title: page.metaTitle,
+        description: page.metaDescription,
+        image: image(page.metaImage)
+          .width(1200)
+          .url(),
+        meta: [{ name: 'keywords', content: page.metaKeywords }],
+        style: [{ id: 'style', children: hypostyle.flush() }]
+      }),
+      body: `<div id="root">${body}</div>`,
+      foot
+    })
+  }
 }

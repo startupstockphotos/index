@@ -8,6 +8,5 @@
 
 [[redirects]]
   from = "/*"
-  to = "/index.html"
-  status = 410
-  force = false
+  to = "/.netlify/functions/presta"
+  status = 200
