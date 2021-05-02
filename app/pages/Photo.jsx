@@ -81,6 +81,9 @@ export async function handler (props) {
   )
 
   return {
+    headers: {
+      'Cache-Contro': 'max-age=3600, public'
+    },
     html: html({
       head: merge(head, {
         title: documentTitle('#' + photo.title),
