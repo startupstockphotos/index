@@ -5,7 +5,7 @@ export function Container ({ size, children }) {
   return (
     <Box
       mx='auto'
-      css={theme => ({
+      cx={theme => ({
         maxWidth: size
       })}
     >

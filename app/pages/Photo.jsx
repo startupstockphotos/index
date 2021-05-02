@@ -1,9 +1,13 @@
 import { h } from 'hyposcript'
 import { Box } from 'hypobox'
-import { load, cache, prime } from 'presta/load'
+import { html } from 'presta/html'
+import merge from 'deepmerge'
 
 import { client, image } from '@/app/lib/sanity'
 import { documentTitle } from '@/app/lib/documentTitle'
+import { hypostyle } from '@/app/lib/hypostyle'
+import { head } from '@/app/lib/head'
+import { foot } from '@/app/lib/foot'
 
 import { Img } from '@/app/components/Img'
 import { Layout } from '@/app/components/Layout'
@@ -31,50 +35,22 @@ const photoQuery = `
   "slug": slug.current,
 `
 
-export async function getPaths () {
-  const photos = await cache(
-    async () =>
-      await client.fetch(`
-    *[_type == 'photo'] {
-      ${photoQuery}
-    } | order(_createdAt desc)
-    `),
-    { key: 'photos', duration: '1m' }
+export const route = '/photos/:slug'
+
+export async function handler (props) {
+  const { slug } = props.params
+
+  const photo = await client.fetch(
+    `*[_type == 'photo' && slug.current == $slug]{
+			${photoQuery}
+		}[0]`,
+    { slug }
   )
-
-  photos.map(p => prime(p, { key: p.slug }))
-
-  return photos.map(p => `/photos/${p.slug}`)
-}
-
-export function Page (props) {
-  const [_, slug] = props.pathname.match(/photos\/(.+)/) || [] // eslint-disable-line
-
-  const photo = load(
-    () =>
-      client.fetch(
-        `*[_type == 'photo' && slug.current == $slug]{
-          ${photoQuery}
-        }[0]`,
-        { slug }
-      ),
-    { key: slug }
-  )
-
-  if (!photo) return null
-
-  props.head({
-    title: documentTitle('#' + photo.title),
-    description: photo.description || `SSP #${photo.slug}`,
-    image: image(photo.image)
-      .width(1200)
-      .url()
-  })
 
   const { title } = photo
   const { metadata } = photo.image.asset
 
-  return (
+  const body = (
     <Layout navSubpage={slug}>
       <Gutter>
         <Box py={[8, 8, 12]}>
@@ -92,7 +68,7 @@ export function Page (props) {
         </Box>
       </Gutter>
 
-      <Box h='calc(100vh - 75px)'>
+      <Box rel h='calc(100vh - 75px)'>
         <Img
           bg={metadata.palette.dominant.background}
           asset={photo.image}
@@ -103,4 +79,19 @@ export function Page (props) {
       </Box>
     </Layout>
   )
+
+  return {
+    html: html({
+      head: merge(head, {
+        title: documentTitle('#' + photo.title),
+        description: photo.description || `SSP #${photo.slug}`,
+        image: image(photo.image)
+          .width(1200)
+          .url(),
+        style: [{ id: 'style', children: hypostyle.flush() }]
+      }),
+      body: `<div id="root">${body}</div>`,
+      foot
+    })
+  }
 }

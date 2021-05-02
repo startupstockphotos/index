@@ -8,13 +8,13 @@ export function Nav ({ subpage }) {
     <Box
       as='header'
       py={6}
-      css={{
+      cx={{
         borderBottom: '2px solid currentColor'
       }}
     >
       <Gutter>
         <Box f aic jcb>
-          <Box as='h1' f aic fs={5} fe={7}>
+          <Box as='h1' f aic fs={5} fw={7}>
             {subpage ? (
               <>
                 <a href='/'>SSP</a>
@@ -26,7 +26,7 @@ export function Nav ({ subpage }) {
             )}
           </Box>
 
-          <Box as='nav' f aic jce fs={5} fe={7}>
+          <Box as='nav' f aic jce fs={5} fw={7}>
             <Box
               as='a'
               href='https://paypal.me/startupphotos'
@@ -36,7 +36,7 @@ export function Nav ({ subpage }) {
               px={4}
               py={1}
               bg='blue'
-              css={{ color: 'white !important', borderRadius: '20px' }}
+              cx={{ color: 'white !important', borderRadius: '20px' }}
             >
               Donate
             </Box>

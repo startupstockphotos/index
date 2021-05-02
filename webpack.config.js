@@ -9,7 +9,7 @@ module.exports = {
     client: './client/index.js'
   },
   output: {
-    path: path.join(cwd, './build')
+    path: path.join(cwd, './public')
   },
   performance: { hints: false },
   devtool: 'cheap-module-source-map',

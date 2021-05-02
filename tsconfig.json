@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "h",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    }
+  }
+}

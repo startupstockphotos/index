@@ -1,5 +1,5 @@
 .netlify
 build
 .env
-.presta
+.presta-load-cache
 sanity/dist

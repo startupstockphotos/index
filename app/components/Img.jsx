@@ -20,7 +20,7 @@ export function Img ({ asset, width = 1000, ...props }) {
         data-src={image(asset)
           .width(width)
           .url()}
-        css={() => ({
+        cx={() => ({
           opacity: 0,
           objectFit: 'cover',
           transitionProperty: 'opacity',
