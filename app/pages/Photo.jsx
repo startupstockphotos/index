@@ -82,7 +82,7 @@ export async function handler (props) {
 
   return {
     headers: {
-      'Cache-Control': 'max-age=3600, public'
+      'Cache-Control': 'public, s-maxage=3600'
     },
     html: html({
       head: merge(head, {
